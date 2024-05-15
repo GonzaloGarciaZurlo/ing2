@@ -10,7 +10,7 @@
 %
 \begin{document}
 %
-\title{Contribution Title}
+\title{Investigación Dafny}
 %
 \author{Gonzalo Garcia Zurlo\inst{1} \and
 Santiago Monserrat Campanello\inst{1} \and
@@ -25,9 +25,99 @@ Av. Medina Allende, Córdoba, Argentina
 %
 \maketitle
 % inserta el índice general
+\begin{abstract}
+    The abstract should briefly summarize the contents of the paper in
+    150--250 words.
+\keywords{Dafny  \and Second keyword \and Another keyword.}
+\end{abstract}
+%
 \tableofcontents
-\section{Algunas palabras interesantes}
+% Esta sección no se si deberia volar o no porque no se que pondriamos
+\section{Introducción}
 Y bien, aquí comienza mi articulillo.
-\section{Adiós, Mundo}
-...y aquí termina.
+\section{Contexto de creación de la herramienta}
+Aparecio por primera vez en 2009.
+
+Dafny was created by Rustan Leino at Microsoft Research
+after his previous work on developing ESC/Modula-3, ESC/Java, and Spec\#.
+
+Creo que vivia en el pacific northwest de estados unidos en esa epoca
+
+La herramienta está super "viva" tiene contribuciones constantemente, la ultima release estable es 4.6.0 salio el 28 de marzo de 2024. Hay commits casi todos los dias
+
+http://leino-online.com/rustan/ (xd tremenda página tiene)
+
+http://leino-online.com/music/B-student.html (tiene canciones epicas fadasvfsjvklfa, escitas el mismo mes del 9/11)
+
+\section{Objetivo de la herramienta}
+Dafny was designed as a verification-aware programming language, requiring verification along with code development. It thus fits the "Correct by Construction" software development paradigm.
+
+.
+
+\section{Descripción de la herramienta del lado del usuario}
+Como cualquier otro lenguaje de programación más o menos moderno tiene un LSP (Language Server Protocol).
+
+Es un lenguaje de programación con una sintaxis relativamente estandar con las siguentes features:
+
+mathematical and bounded integers and reals, bit-vectors, classes, iterators, arrays, tuples, generic types, refinement and inheritance,
+inductive datatypes that can have methods and are suitable for pattern matching,
+lazily unbounded datatypes,
+subset types, such as for bounded integers,
+lambda expressions and functional programming idioms,
+and immutable and mutable data structures
+
+Y al lenguaje le agrega esto para verificar: (Dafny also offers an extensive toolbox for mathematical proofs about software, including
+)
+
+bounded and unbounded quantifiers,
+calculational proofs and the ability to use and prove lemmas,
+pre- and post-conditions, termination conditions, loop invariants, and read/write specifications.
+
+Luego de hacer un programa y chequearlo dafny puede compilar (quizas mejor dicho transpilar) el codigo a C\#, Go, Python, Java, or JavaScript (more to come!)
+
+\section{Aspectos técnicos de la herramienta}
+The general proof framework is that of Hoare logic.
+
+Dafny builds on the Boogie intermediate language
+which uses the Z3 automated theorem prover
+(otra herramienta de microsoft reserch https://github.com/Z3Prover/z3) for discharging proof obligations.
+
+\section{Casos de estudio (exitosos o no de la herramienta)}
+Parace que se la usa mucho para competencias de specificacion y verificación formal de programas.
+
+Parece que más que nada se lo usa para enseñar verificación (segun la página de microsoft reaserch).
+
+https://www.microsoft.com/en-us/research/uploads/prod/2008/12/dafny\_krml203.pdf
+
+En ese paper hay un caso de estudio del algoritmo schorr-waite (ni idea que es eso)
+
+\section{Comparación con otras herramientas}
+https://github.com/backtracking/program-proofs-with-why3
+
+Acá parece que compara dafny con why3 que parece ser otra herramienta que tambien tiene un lenguaje de programación
+
+Estos son algunos problemas que salen en el libro del autor de Dafny
+
+\section{Caso de estudio elegido}
+???
+
+\section{Conclusiones particulares}
+Es facil de usar y amigable (todavia no escribi nada en Dafny)
+
+\section{Links varios y otras frutas}
+https://www.microsoft.com/en-us/research/project/dafny-a-language-and-program-verifier-for-functional-correctness/
+
+La pagina original o eso parece de microsoft research del lenguaje. Tiene buenos resumenes de que se trata la cosa
+
+https://www.microsoft.com/en-us/research/uploads/prod/2008/12/Dafny\_krml190.pdf/
+
+Parece ser otro paper del autor apenas saco Dafny
+
+https://www.linkedin.com/in/k-rustan-m-leino-91a9a213/
+
+ahora el chabon que creo Dafny trabaja para amazon
+
+saco un libro para enseñar pruebas https://program-proofs.com/ , no se que onda estára el libro
+
+tiene un canal de youtube explicando algunas cosas de dafny y verificación en general (https://www.youtube.com/watch?v=spcfzbisBv4 video de ternas de Hoare)
 \end{document}
