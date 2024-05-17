@@ -124,11 +124,23 @@ https://www.microsoft.com/en-us/research/uploads/prod/2008/12/dafny\_krml203.pdf
 En ese paper hay un caso de estudio del algoritmo schorr-waite (ni idea que es eso)
 
 \section{Comparación con otras herramientas}
-https://github.com/backtracking/program-proofs-with-why3
 
-Acá parece que compara dafny con why3 que parece ser otra herramienta que tambien tiene un lenguaje de programación
+Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
+y que son similares a Dafny en su enfoque de verificación formal, 
+un ejemplo de esto es Why3 que utiliza un enfoque basado en condiciones de verificación y SMT solvers.
 
-Estos son algunos problemas que salen en el libro del autor de Dafny
+Otro claro ejemplo es Spec\# que se puede considerar el predeseor de Dafny y que también utiliza un enfoque basado en lógica de Hoare,
+y comparten muchos principios y tecnologías subyacentes, como la integración con el SMT solver Z3.
+
+En contra parte, Dafny difiere con otras herramientas de verificacion formal en ciertos aspectos, uno de los ejemplos mas claros es Coq 
+que su principal caracteristica es ser interactivo, 
+permitiendo a los usuarios construir pruebas paso a paso, mientras que Dafny automatiza la mayor parte del proceso de verificación,
+ademas, Coq soporta logicas de ordenes superiores, lo que permite especificaciones y verificaciones más expresivas y complejas que Dafny.
+
+Otro ejemplo puede ser Agda, que difiere con las antes mencionadas ya que 
+es orientada hacia la programación funcional, mientras que Dafny es un lenguaje de programación imperativo. 
+Tambien como Coq, Agda utiliza tipos dependientes para especificar y verificar propiedades, 
+permitiendo una integración más estrecha entre programación y pruebas, mientras que Dafny utiliza tipos basicos y compuestos del paradigma imperativo.
 
 \section{Caso de estudio elegido}
 ???
@@ -154,5 +166,12 @@ ahora el chabon que creo Dafny trabaja para amazon
 saco un libro para enseñar pruebas https://program-proofs.com/ , no se que onda estára el libro
 
 tiene un canal de youtube explicando algunas cosas de dafny y verificación en general (https://www.youtube.com/watch?v=spcfzbisBv4 video de ternas de Hoare)
+
+https://github.com/backtracking/program-proofs-with-why3
+
+https://en.wikipedia.org/wiki/Agda_(programming_language)
+
+https://en.wikipedia.org/wiki/Coq_(software)
+
 \end{document}
 
