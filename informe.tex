@@ -36,18 +36,23 @@ Av. Medina Allende, Córdoba, Argentina
 \section{Introducción}
 Y bien, aquí comienza mi articulillo.
 \section{Contexto de creación de la herramienta}
-Aparecio por primera vez en 2009.
 
-Dafny was created by Rustan Leino at Microsoft Research
-after his previous work on developing ESC/Modula-3, ESC/Java, and Spec\#.
+La herramienta Dafny fue creada en 2009 por Rustan Leino,
+a partir de experiencias previas desarrollando herramientas como ESC/Modula-3, ESC/java y Spect\#.
 
-Creo que vivia en el pacific northwest de estados unidos en esa epoca
+Desde 2001, Rustan vivio en pacific northwest (EE. UU.) y sé desempeñó como investigador y desarrollador de software para Microsoft,
+donde finalmente creó Dafny.
 
-La herramienta está super "viva" tiene contribuciones constantemente, la ultima release estable es 4.6.0 salio el 28 de marzo de 2024. Hay commits casi todos los dias
+Previamente, trabajó en el desarrollo del lenguaje de verificación "Boogie",
+que hoy en día es un componente básico para muchos verificadores de programas modernos,
+como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.    
 
-http://leino-online.com/rustan/ (xd tremenda página tiene)
+Dafny fue creado principalmente en un contexto académico, 
+aunque se sigue siendo usado para la enseñanza en muchas universidades, 
+Dafny tiene un fuerte enfoque en aplicaciones prácticas con mucha relevancia industrial actualmente.
+Un ejemplo de esto es el uso de Dafny en Amazon Web Services (AWS) para verificar la corrección de los servicios de AWS.
 
-http://leino-online.com/music/B-student.html (tiene canciones epicas fadasvfsjvklfa, escitas el mismo mes del 9/11)
+https://www.amazon.science/working-at-amazon/rustan-leino-provides-proof-that-software-is-bug-free
 
 \section{Objetivo de la herramienta}
 Dafny was designed as a verification-aware programming language, requiring verification along with code development. It thus fits the "Correct by Construction" software development paradigm.
@@ -58,6 +63,7 @@ Dafny was designed as a verification-aware programming language, requiring verif
 Como cualquier otro lenguaje de programación más o menos moderno tiene un LSP (Language Server Protocol).
 
 Es un lenguaje de programación con una sintaxis relativamente estandar con las siguentes features:
+En cuanto a las estructuras de datos a nivel de usuario que maneja, podemos utilizar arreglos, secuencias, conjuntos, mapas y tuplas.
 
 mathematical and bounded integers and reals, bit-vectors, classes, iterators, arrays, tuples, generic types, refinement and inheritance,
 inductive datatypes that can have methods and are suitable for pattern matching,
@@ -76,11 +82,37 @@ pre- and post-conditions, termination conditions, loop invariants, and read/writ
 Luego de hacer un programa y chequearlo dafny puede compilar (quizas mejor dicho transpilar) el codigo a C\#, Go, Python, Java, or JavaScript (more to come!)
 
 \section{Aspectos técnicos de la herramienta}
-The general proof framework is that of Hoare logic.
+El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
+utilizando principios como tripletes de Hoare, reglas de inferencia y correcion parcial y total.
 
-Dafny builds on the Boogie intermediate language
-which uses the Z3 automated theorem prover
-(otra herramienta de microsoft reserch https://github.com/Z3Prover/z3) for discharging proof obligations.
+En cuanto al espacio de estado, Dafny maneja este a partir de herramientas como SMT Solvers y Boogie Intermediate Verification Language
+para realizar la verificación formal de programas.
+
+En conjunto con esto, Dafny se centra en considerar todas las posibles ejecuciones del programa dentro del marco de las especificaciones proporcionadas. 
+Sin embargo, utiliza técnicas que le permiten manejar el espacio de estado de manera simbólica en lugar de explícita, 
+lo que le permite considerar efectivamente "todo el espacio de estado" sin necesidad de enumerarlo completamente.
+
+En lugar de trabajar con valores concretos, Dafny utiliza variables simbólicas que representan un rango de posibles valores,
+esto permite el análisis de todos los posibles estados del programa simultáneamente.
+Además, Dafny utiliza invariantes dentro de bucles, como también precondiciones (requires) y postcondiciones (ensures) para definir las condiciones 
+que deben cumplirse antes y después de la ejecución de métodos.
+
+Para simplificar y transformar los problemas de verificación en formas que pueden ser manejadas más eficientemente por los solvers, 
+Dafny utiliza técnicas de reducción como reducción de expresiones, desdoblamiento de bucles, eliminación de cuantificadores,
+abstracción de datos (para evitar detalles internos) y descomposición modular (para dividir problemas grandes en problemas más pequeños).
+
+En cuanto a la validez de los resultados, la verificación que realiza Dafny es correcta en términos de asegurar que las condiciones
+especificadas (precondiciones, postcondiciones, invariantes) se cumplen en todas las ejecuciones posibles del programa. 
+Además, dentro del marco de su modelo simbólico y las especificaciones proporcionadas,
+Dafny busca ser exhaustivo. Las técnicas de reducción y abstracción antes mencionadas no comprometen la exhaustividad lógica.
+
+Aunque Dafny esté diseñado para ser muy preciso en la verificación formal, 
+los falsos negativos pueden ser más comunes de lo esperable debido a las limitaciones prácticas que tiene SMT solver
+cuando la complejidad de las especificaciones es grande.
+
+Finalmente, Dafny utiliza varias estructuras de datos y conceptos avanzados para realizar la verificación formal del código,
+entre las que podemos encontrar árboles de sintaxis abstracta (ASTs), Boogie Intermediate Representation (IR), grafos de control de flujo (CFGs),
+tablas de símbolos y condiciones de verificación (VCs).
 
 \section{Casos de estudio (exitosos o no de la herramienta)}
 Parace que se la usa mucho para competencias de specificacion y verificación formal de programas.
@@ -102,9 +134,11 @@ Estos son algunos problemas que salen en el libro del autor de Dafny
 ???
 
 \section{Conclusiones particulares}
-Es facil de usar y amigable (todavia no escribi nada en Dafny)
+Es facil de usar (como yo para ella Sad) y amigable (todavia no escribi nada en Dafny)
 
 \section{Links varios y otras frutas}
+(otra herramienta de microsoft reserch https://github.com/Z3Prover/z3) for discharging proof obligations.
+
 https://www.microsoft.com/en-us/research/project/dafny-a-language-and-program-verifier-for-functional-correctness/
 
 La pagina original o eso parece de microsoft research del lenguaje. Tiene buenos resumenes de que se trata la cosa
@@ -121,3 +155,4 @@ saco un libro para enseñar pruebas https://program-proofs.com/ , no se que onda
 
 tiene un canal de youtube explicando algunas cosas de dafny y verificación en general (https://www.youtube.com/watch?v=spcfzbisBv4 video de ternas de Hoare)
 \end{document}
+
