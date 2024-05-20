@@ -133,13 +133,33 @@ entre las que podemos encontrar árboles de sintaxis abstracta (ASTs), Boogie In
 tablas de símbolos y condiciones de verificación (VCs).
 
 \section{Casos de estudio (exitosos o no de la herramienta)}
-Parace que se la usa mucho para competencias de specificacion y verificación formal de programas.
-
-Parece que más que nada se lo usa para enseñar verificación (segun la página de microsoft reaserch).
 
 https://www.microsoft.com/en-us/research/uploads/prod/2008/12/dafny\_krml203.pdf
 
-En ese paper hay un caso de estudio del algoritmo schorr-waite (ni idea que es eso)
+Este paper fue para una conferencia en el que se presento Dafny, presenta el "famoso" algoritmo schorr-waite como caso de studio. Es un algoritomo para marcar todos los nodos que son alcanzables en un grafo dirigido dado un nodo raiz.
+
+No se si entiendo cual es la diferencia con dfs pero parece que es más eficiente en memoria.
+
+
+https://github.com/Microsoft/Ironclad
+
+https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/final-osdi-2014.pdf
+
+Una Ironclad App le permite a los usuarios transmitir datos de forma segura a una máquina remota, garantizando que cada instrucción cumple con una especificación formal del comportamiento de la aplicación. Esto elimina vulnerabilidades como buffer overflows, errores de parseo y fugas de datos, asegurando el comportamiento esperado de la aplicación en todo momento. Se realizó una verificación completa de software de bajo nivel, criptografía y hardware seguro para establecer canales seguros con usuarios remotos.
+
+En este proyecto se uso Dafny para escribir y verificar el codigo, luego traducirlo a BoogieX86 un lenguaje Assambly verficable para evitar tambien errores del compilador.
+
+https://www.microsoft.com/en-us/research/wp-content/uploads/2015/10/ironfleet.pdf
+
+La idea de Ironfleet es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodologia de trabajo para realizar la implementación de un sistema del estilo. En el papaer hay dos sistemas implementados uno con una libreria de maquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
+Se uso una versión extendida de Dafny que permite manejar paquetes de red UDP y tambien para poder verificar propiedades de liveness y safety una extención que permita manejar TLA (una extención de la logica temporal).
+
+A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumio que el compilador de Dafny, el runtime de dotnet y Windows eran correctos.
+
+
+Parace que se lo uso mucho para competencias de specificacion y verificación formal de programas.
+
+Parece que más que nada se lo usa para enseñar verificación (segun la página de microsoft reaserch).
 
 \section{Comparación con otras herramientas}
 
@@ -161,7 +181,7 @@ También como Coq, Agda utiliza tipos dependientes para especificar y verificar 
 permitiendo una integración más estrecha entre programación y pruebas, mientras que Dafny utiliza tipos básicos y compuestos del paradigma imperativo.
 
 \section{Caso de estudio elegido}
-???
+ehhh capaz el codigo en /codigo sirva para esto?
 
 \section{Conclusiones particulares}
 Es facil de usar (como yo para ella Sad) y amigable (todavia no escribi nada en Dafny)
