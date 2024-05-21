@@ -7,6 +7,7 @@
 \usepackage[T1]{fontenc}
 %
 \usepackage{graphicx}
+\usepackage{hyperref}
 %
 \begin{document}
 %
@@ -140,18 +141,11 @@ Este paper fue para una conferencia en el que se presento Dafny, presenta el "fa
 
 No se si entiendo cual es la diferencia con dfs pero parece que es más eficiente en memoria.
 
-
-https://github.com/Microsoft/Ironclad
-
-https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/final-osdi-2014.pdf
-
-Una Ironclad App le permite a los usuarios transmitir datos de forma segura a una máquina remota, garantizando que cada instrucción cumple con una especificación formal del comportamiento de la aplicación. Esto elimina vulnerabilidades como buffer overflows, errores de parseo y fugas de datos, asegurando el comportamiento esperado de la aplicación en todo momento. Se realizó una verificación completa de software de bajo nivel, criptografía y hardware seguro para establecer canales seguros con usuarios remotos.
+Una Ironclad\cite{hawblitzel2014ironclad} App le permite a los usuarios transmitir datos de forma segura a una máquina remota, garantizando que cada instrucción cumple con una especificación formal del comportamiento de la aplicación. Esto elimina vulnerabilidades como buffer overflows, errores de parseo y fugas de datos, asegurando el comportamiento esperado de la aplicación en todo momento. Se realizó una verificación completa de software de bajo nivel, criptografía y hardware seguro para establecer canales seguros con usuarios remotos.
 
 En este proyecto se uso Dafny para escribir y verificar el codigo, luego traducirlo a BoogieX86 un lenguaje Assambly verficable para evitar tambien errores del compilador.
 
-https://www.microsoft.com/en-us/research/wp-content/uploads/2015/10/ironfleet.pdf
-
-La idea de Ironfleet es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodologia de trabajo para realizar la implementación de un sistema del estilo. En el papaer hay dos sistemas implementados uno con una libreria de maquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
+La idea de Ironfleet\cite{hawblitzel2015ironfleet} es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodologia de trabajo para realizar la implementación de un sistema del estilo. En el papaer hay dos sistemas implementados uno con una libreria de maquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
 Se uso una versión extendida de Dafny que permite manejar paquetes de red UDP y tambien para poder verificar propiedades de liveness y safety una extención que permita manejar TLA (una extención de la logica temporal).
 
 A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumio que el compilador de Dafny, el runtime de dotnet y Windows eran correctos.
@@ -197,7 +191,7 @@ https://www.microsoft.com/en-us/research/uploads/prod/2008/12/Dafny\_krml190.pdf
 
 Parece ser otro paper del autor apenas saco Dafny
 
-https://www.linkedin.com/in/k-rustan-m-leino-91a9a213/
+ Prueba de citar el linkedin de Leino\cite{linkedinLeino}
 
 ahora el chabon que creo Dafny trabaja para amazon
 
@@ -212,5 +206,6 @@ https://en.wikipedia.org/wiki/Agda_(programming_language)
 https://en.wikipedia.org/wiki/Coq_(software)
 
 https://www.amazon.science/working-at-amazon/rustan-leino-provides-proof-that-software-is-bug-free
+\bibliographystyle{plain}
+\bibliography{refs}
 \end{document}
-
