@@ -7,7 +7,10 @@
 \usepackage[T1]{fontenc}
 %
 \usepackage{graphicx}
+%links
 \usepackage{hyperref}
+%to put linenumbers in code 
+\usepackage{fancyvrb}
 %
 \begin{document}
 %
@@ -174,7 +177,61 @@ es orientada hacia la programación funcional, mientras que Dafny es un lenguaje
 También como Coq, Agda utiliza tipos dependientes para especificar y verificar propiedades, 
 permitiendo una integración más estrecha entre programación y pruebas, mientras que Dafny utiliza tipos básicos y compuestos del paradigma imperativo.
 
-\section{Caso de estudio elegido}
+\section{Caso de estudio: verificar algoritmo Fibonacci}
+Supongamos que necesito implementar fibonacci, pero no quiero implementarlo de manera recursiva por una cuestión de performance. En Dafny lo puedo hacer de la siguiente manera.
+
+Primero defino la función fibonacci copiando la definición matematica.
+\begin{Verbatim}[numbers=left,xleftmargin=5mm]
+function fibonacci(n: nat): nat
+{
+  if n == 0 then 0
+  else if n == 1 then 1
+  else fib(n - 1) + fib(n - 2)
+}
+\end{Verbatim}
+
+Habiendo hecho esto empiezo a definir el metodo para calcular fibonacci.
+Como precondición, usando la palabra reservada \textit{ensures}, tengo que la variable de retorno \textit{b} tiene que ser igual al resultado de calcular fibonacci con la función antes definida.
+Se que para mi metodo voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello tambien agrego la lineas 8 y 13 que me asguran que recorro todo el rango [0,n].
+La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del loop como (linea 9) y la inicializo para que se cumpla la invariante en la primera iteración. Despues por la definición de fibonacci voy a necesitar otra variable para guardar el valor del siguiente valor de fibonacci o el anterior, en este caso elijo el siguiente (linea 10).
+
+Luego con estas invariantes escribir la linea 12 es consecuente de las invariantes, ya que para cada loop, el nuevo valor de fib(i) es el valor de fib(i+1) de la iteración anterior, y el valor del siguiente fibonacci es fib(i) + fib(i+1) de la iteración anterior.
+\begin{Verbatim}[numbers=left,xleftmargin=5mm]
+method ComputeFib(n: nat) returns (b: nat)
+  ensures b == fib(n)
+{
+  var i := 0;
+  b := 0;
+  var c := 1;
+  while i < n
+    invariant 0 <= i <= n
+    invariant b == fib(i)
+    invariant c == fib(i + 1)
+  {
+    b, c := c, c + b;
+    i := i + 1;
+  }
+}
+\end{Verbatim}
+Finalmente si quisiera ver el resultado de la función para algun valor, Dafny tiene un metodo especial Main que se ejecuta cuando uno corre el programa con la CLI.
+\begin{Verbatim}[numbers=left,xleftmargin=5mm]
+method Main() {
+    var n := 8;
+    var fibo := ComputeFib(n);
+    print "Fibonachi of ";
+    print n;
+    print " is ";
+    print fibo;
+    print "\n";
+}
+\end{Verbatim}
+
+
+Y dafny nos devuelve 
+\begin{verbatim}
+Dafny program verifier finished with 3 verified, 0 errors
+Fibonachi of 8 is 21
+\end{verbatim}
 ehhh capaz el codigo en /codigo sirva para esto?
 
 \section{Conclusiones particulares}
@@ -201,9 +258,9 @@ tiene un canal de youtube explicando algunas cosas de dafny y verificación en g
 
 https://github.com/backtracking/program-proofs-with-why3
 
-https://en.wikipedia.org/wiki/Agda_(programming_language)
+https://en.wikipedia.org/wiki/Agda\_(programming\_language)
 
-https://en.wikipedia.org/wiki/Coq_(software)
+https://en.wikipedia.org/wiki/Coq\_(software)
 
 https://www.amazon.science/working-at-amazon/rustan-leino-provides-proof-that-software-is-bug-free
 \bibliographystyle{plain}
