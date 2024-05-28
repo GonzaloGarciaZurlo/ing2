@@ -77,9 +77,20 @@ Dafny tiene un fuerte enfoque en aplicaciones prácticas con mucha relevancia in
 Un ejemplo de esto es el uso de Dafny en Amazon Web Services (AWS) para verificar la corrección de los servicios de AWS.
 
 \section{Objetivo de la herramienta}
-Dafny was designed as a verification-aware programming language, requiring verification along with code development. It thus fits the "Correct by Construction" software development paradigm.
 
-.
+Dafny es una herramienta diseñada para realizar verificaciones formales de programas durante su implementación.
+Su objetivo principal es permitir a los desarrolladores escribir programas correctos y verificables mediante la descripción
+de especificaciones directamente en el código fuente. Es decir, el código es verificado a medida que es desarrollado.
+
+Esta herramienta se ajusta al paradigma de desarrollo ``Correcto por construcción'', lo que significa que se comienza
+con un programa específico pero abstracto, y luego se le aplican un conjunto de reglas para ir acotando la especificación
+y convertir el programa en una implementación concreta. De esta forma, el programa resultante es correcto por construcción.
+Desarrollando programas de esta manera, los defectos pueden resolverse más fácilmente.
+
+Dafny se destaca por su capacidad única de combinar la implementación del código con la descripción formal de su comportamiento
+deseado. Esto facilita la detección temprana de posibles errores y garantiza que el software funcione según lo previsto en todas
+las circunstancias. Al proporcionar un marco para la verificación automática de estas especificaciones, Dafny simplifica en gran
+medida el proceso de asegurar la corrección del código, lo que resulta en un desarrollo de software más eficiente, confiable y seguro.
 
 \section{Descripción de la herramienta del lado del usuario}
 Como cualquier otro lenguaje de programación más o menos moderno tiene un LSP (Language Server Protocol).
