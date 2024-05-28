@@ -93,26 +93,36 @@ las circunstancias. Al proporcionar un marco para la verificación automática d
 medida el proceso de asegurar la corrección del código, lo que resulta en un desarrollo de software más eficiente, confiable y seguro.
 
 \section{Descripción de la herramienta del lado del usuario}
-Como cualquier otro lenguaje de programación más o menos moderno tiene un LSP (Language Server Protocol).
 
-Es un lenguaje de programación con una sintaxis relativamente estandar con las siguentes features:
-En cuanto a las estructuras de datos a nivel de usuario que maneja, podemos utilizar arreglos, secuencias, conjuntos, mapas y tuplas.
+Dafny se utiliza exclusivamente a través de la línea de comandos, ya que no cuenta con una interfaz gráfica.
+Para mejorar la experiencia del usuario durante el proceso de verificación, se han desarrollado extensiones para entornos de desarrollo integrado (IDE) populares como Visual Studio Code.
+Estas extensiones proporcionan funcionalidades adicionales y facilitan la integración de la herramienta en el flujo de trabajo del desarrollador.
+De esta manera, es posible realizar la verificación de manera simultánea al desarrollo del código, lo que simplifica el proceso y agiliza la detección de posibles errores o inconsistencias.
 
-mathematical and bounded integers and reals, bit-vectors, classes, iterators, arrays, tuples, generic types, refinement and inheritance,
-inductive datatypes that can have methods and are suitable for pattern matching,
-lazily unbounded datatypes,
-subset types, such as for bounded integers,
-lambda expressions and functional programming idioms,
-and immutable and mutable data structures
+Además de su integración con IDEs, Dafny sigue el estándar del Protocolo del Servidor de Lenguaje (LSP), al igual que muchos otros lenguajes de programación modernos.
+Esto permite una comunicación fluida entre el entorno de desarrollo y el verificador, mejorando la experiencia del usuario al proporcionar características como resaltado de sintaxis, autocompletado y navegación inteligente.
+Una vez que se ha escrito y verificado un programa, la herramienta ofrece la capacidad de compilar el código a una variedad de lenguajes de programación, como C\#, Go, Python, Java y JavaScript.
+Esta característica amplía las posibilidades de uso de los programas verificados, permitiendo su integración con otros sistemas y plataformas según las necesidades del proyecto.
 
-Y al lenguaje le agrega esto para verificar: (Dafny also offers an extensive toolbox for mathematical proofs about software, including
-)
+Esta herramienta ofrece una variedad de características y conceptos clave que son importantes para que el usuario la aproveche al máximo.
+A continuación, se resumen algunos de estos aspectos:
 
-bounded and unbounded quantifiers,
-calculational proofs and the ability to use and prove lemmas,
-pre- and post-conditions, termination conditions, loop invariants, and read/write specifications.
+Proporciona una amplia gama de tipos, incluyendo booleanos, enteros matemáticos, referencias a clases genéricas definidas por el usuario, conjuntos, secuencias y tipos de datos algebraicos.
+Se garantiza la seguridad de tipos, asegurando que el tipo estático de una expresión describa con precisión los posibles valores en tiempo de ejecución.
+Esto permite especificar la corrección funcional y la estructura del programa de manera precisa.
 
-Luego de hacer un programa y chequearlo dafny puede compilar (quizas mejor dicho transpilar) el codigo a C\#, Go, Python, Java, or JavaScript (more to come!)
+Las variables ghost en Dafny son utilizadas en la verificación del programa pero no tienen presencia en tiempo de ejecución.
+Estas variables se actualizan a través de declaraciones de asignación y siguen las mismas reglas que las variables físicas.
+Son útiles para fines de verificación y se distinguen de las variables físicas mediante comprobaciones sintácticas para prevenir que sus valores fluyan hacia variables no-ghost.
+
+Las funciones matemáticas, secuencias y tipos de datos algebraicos cumplen un rol muy importante en el lenguaje, debido a sus características y usos.
+Las funciones pueden incluir parámetros de tipo, precondiciones, postcondiciones, cláusulas de lectura, cláusulas de disminución y cuerpos.
+Las secuencias permiten operaciones como selección de miembros, concatenación y obtención de longitud.
+Los tipos de datos algebraicos definen conjuntos de valores estructurales mediante constructores, lo que permite un modelado flexible de datos.
+
+Las expresiones y declaraciones son esenciales en la especificación y ejecución del programa.
+Las expresiones son utilizadas para calcular valores y pueden incluir literales, variables, llamadas a funciones y operadores.
+Las declaraciones, por otro lado, se utilizan para realizar acciones como asignaciones, llamadas a métodos, condicionales, bucles y aserciones.
 
 \section{Aspectos técnicos de la herramienta}
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
