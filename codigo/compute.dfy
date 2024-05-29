@@ -1,3 +1,21 @@
+// ejemplo de ocmo pasar el codigo a python para Dafny 4.6.0
+// dotnet dafny run --target:py compute.dfy
+
+lemma EvenFibDivBy3(n: nat)
+  ensures fib(n) % 2 == 0 <==> n % 3 == 0
+{
+}
+
+lemma {:induction false}EvenFibDivBy3'(n: nat)
+  ensures fib(n) % 2 == 0 <==> n % 3 == 0
+{
+  if(n < 2){
+  }
+  else {
+    EvenFibDivBy3'(n-1); EvenFibDivBy3'(n-2);
+  }
+}
+
 function fib(n: nat): nat
   decreases n
 {
