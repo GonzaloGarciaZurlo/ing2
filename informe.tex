@@ -125,6 +125,11 @@ Las expresiones y declaraciones son esenciales en la especificación y ejecució
 Las expresiones son utilizadas para calcular valores y pueden incluir literales, variables, llamadas a funciones y operadores.
 Las declaraciones, por otro lado, se utilizan para realizar acciones como asignaciones, llamadas a métodos, condicionales, bucles y aserciones.
 
+También tiene la posibilidad de definir lemas. En su sintaxis se definin de manera muy similar a los metodos, pero con la palabra reservada \textit{lemma} en lugar de \textit{method}.
+Son muy útiles para demostrar propiedades que no se pueden demostrar con las invariantes de los loops.
+Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automaticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
+Los lemas que no se prueban automaticamente se puedn probar al estilo de un calculo de una prueba encadenando sentencias, o más al estilo inductivo, convendra usar una u otra dependiendo, en general, del tipo subyacente del metodo sobre el cual se quiere probar el lema.
+
 \section{Aspectos técnicos de la herramienta}
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
 utilizando principios como tripletes de Hoare, reglas de inferencia y correcion parcial y total.
