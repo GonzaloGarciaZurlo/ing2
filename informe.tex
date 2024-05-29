@@ -70,12 +70,12 @@ donde finalmente creó Dafny.
 
 Previamente, trabajó en el desarrollo del lenguaje de verificación "Boogie",
 que hoy en día es un componente básico para muchos verificadores de programas modernos,
-como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.    
+como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.
 
 Dafny fue creado principalmente en un contexto académico, 
 aunque se sigue siendo usado para la enseñanza en muchas universidades, 
 Dafny tiene un fuerte enfoque en aplicaciones prácticas con mucha relevancia industrial actualmente.
-Un ejemplo de esto es el uso de Dafny en Amazon Web Services (AWS) para verificar la corrección de los servicios de AWS.
+Un ejemplo de esto es el uso de Dafny en Amazon Web Services (AWS) para verificar corrección.
 
 \section{Objetivo de la herramienta}
 
@@ -129,8 +129,9 @@ Las declaraciones, por otro lado, se utilizan para realizar acciones como asigna
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
 utilizando principios como tripletes de Hoare, reglas de inferencia y correcion parcial y total.
 
-En cuanto al espacio de estado, Dafny maneja este a partir de herramientas como SMT Solvers y Boogie Intermediate Verification Language
-para realizar la verificación formal de programas.
+En cuanto al espacio de estado, Dafny maneja este a partir de Boogie Intermediate Verification Language
+para realizar la verificación formal de programas, a su vez Boogie utiliza Z3 como SMT solver para realizar la verificación,
+pero este es solo el SMT solver default ya que también se puede utiliza Yices 2 o CVC5, aunque su integración es por el momento experimental.
 
 En conjunto con esto, Dafny se centra en considerar todas las posibles ejecuciones del programa dentro del marco de las especificaciones proporcionadas. 
 Sin embargo, utiliza técnicas que le permiten manejar el espacio de estado de manera simbólica en lugar de explícita, 
