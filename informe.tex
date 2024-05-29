@@ -130,6 +130,8 @@ Son muy útiles para demostrar propiedades que no se pueden demostrar con las in
 Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automaticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
 Los lemas que no se prueban automaticamente se puedn probar al estilo de un calculo de una prueba encadenando sentencias, o más al estilo inductivo, convendra usar una u otra dependiendo, en general, del tipo subyacente del metodo sobre el cual se quiere probar el lema.
 
+Dafny tiene un metodo especial llamado Main, que se ejecuta cuando uno corre el programa con la CLI. Este metodo es util para hacer pruebas de la funcionalidad del programa.
+Este metodo en la versión más reciente puede recibir un argumentos de tipo \textit{seq<string>}.
 \section{Aspectos técnicos de la herramienta}
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
 utilizando principios como tripletes de Hoare, reglas de inferencia y correcion parcial y total.
@@ -260,7 +262,6 @@ Y dafny nos devuelve
 Dafny program verifier finished with 3 verified, 0 errors
 Fibonachi of 8 is 21
 \end{verbatim}
-ehhh capaz el codigo en /codigo sirva para esto?
 
 \section{Conclusiones particulares}
 Es facil de usar (como yo para ella Sad) y amigable (todavia no escribi nada en Dafny)
