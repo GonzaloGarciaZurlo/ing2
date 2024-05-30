@@ -34,7 +34,7 @@ Av. Medina Allende, Córdoba, Argentina
 En este documento se presenta una investigación sobre la herramienta Dafny, un lenguaje de programación y verificador de programas,
 hablaremos de sus características, su historia, su uso y su relación con otras herramientas similares. 
 Presentaremos varios casos de estudio y profundizaremos en uno de ellos con el objetivo de comprender mejor la herramienta y su uso en la práctica.
-\keywords{Dafny  \and Rustan Leino \and z3 \and Boogie}
+\keywords{Dafny  \and Rustan Leino \and Z3 \and Boogie}
 \end{abstract}
 
 \section{Introducción}
@@ -46,11 +46,11 @@ Esto lo logra utilizando un lenguaje de programación propio y sus herramientas 
 En este documento, presentamos una visión detallada de Dafny, 
 destacando sus características clave, su enfoque de verificación automática y su impacto en la fiabilidad del software.
 
-\emph{Organización del domcumento.} En la sección 2 hablaermos de los trabajos relacionados con Dafny que uso Rustan como inspiracion.
-La secciónes 3 y 4 presentan el contexto y los objetivos para la creación de la herramienta.
+\emph{Organización del domcumento.} En la sección 2 hablaremos de los trabajos relacionados con Dafny que uso Rustan como inspiración.
+La secciones 3 y 4 presentan el contexto y los objetivos para la creación de la herramienta.
 En la sección 5 se describe la herramienta del lado del usuario. Los aspectos técnicos se explican en la sección 6.
-En la sección 7 se presentan casos de estudio de la herramienta y en la sección 9 se profundizará en uno elegido. 
-Las comparaciones con otras herramientas similares se presentan en la sección 8. Finalmente, en la sección 10 se presentan las conclusiones.
+En la sección 7 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
+Finalmente, en la sección 9 se presentan las conclusiones.
 
 \section{Trabajos relacionados} 
 Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
@@ -136,7 +136,7 @@ Esto permite especificar la corrección funcional y la estructura del programa d
 
 Las sentencias ghost en Dafny son utilizadas en la verificación del programa, pero no tienen presencia en tiempo de ejecución, ya que ni siquiera se tienen en cuenta para la compilación.
 Para declarar sentencias ghost se siguen las mismas reglas que para el resto de sentencias, y su único fin es la verificación del programa.
-Además, para aumentar la eficiencia del programa, Dafny puede convenvertir automáticamente sentencias ``normales'' a sentencias ghost si detecta que es posible.
+Además, para aumentar la eficiencia del programa, Dafny puede convertir automáticamente sentencias ``normales'' a sentencias ghost si detecta que es posible.
 
 Los métodos cumplen un rol muy importante en el lenguaje, debido a sus características y usos.
 Pueden incluir parámetros, precondiciones, postcondiciones, cláusulas de lectura, cláusulas de disminución, cláusulas de modificación y cuerpos.
@@ -154,12 +154,12 @@ Dafny tiene un método especial llamado Main, que se ejecuta cuando uno corre el
 En la versión más reciente puede recibir un argumento de tipo \textit{seq<string>}.
 
 \section{Aspectos técnicos de la herramienta}
-Dafny al tener un lenguaje de programacion propio, tiene muchos detalles más, cada uno de ellos puede ser pueden ver en profundidad en el artículo 
+Dafny al tener un lenguaje de programación propio, tiene muchos detalles más, cada uno de ellos puede ser pueden ver en profundidad en el artículo 
 ``Developing Verified Programs with Dafny''\cite{10.1007/978-3-642-27705-4_7}.
-A continuación, se mencionan los que concideramos mas importantes:
+A continuación, se mencionan los que consideramos más importantes:
 
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
-utilizando principios como tripletes de Hoare, reglas de inferencia y correción parcial y total.
+utilizando principios como tripletes de Hoare, reglas de inferencia y corrección parcial y total.
 
 En conjunto con esto, Dafny se centra en considerar todas las posibles ejecuciones del programa dentro del marco de las especificaciones proporcionadas. 
 Sin embargo, utiliza técnicas que le permiten manejar el espacio de estado de manera simbólica en lugar de explícita, 
@@ -194,10 +194,10 @@ Dafny ha tenido varias aplicaciones en la industria, sobre todo dentro de Micros
 Una Ironclad\cite{hawblitzel2014ironclad} App le permite a los usuarios transmitir datos de forma segura a una máquina remota, garantizando que cada instrucción cumpla con una especificación 
 formal del comportamiento de la aplicación. Esto elimina vulnerabilidades como buffer overflows, errores de parseo y fugas de datos, asegurando el comportamiento esperado de la aplicación en todo momento.
 Se realizó una verificación completa de software de bajo nivel, criptografía y hardware seguro para establecer canales seguros con usuarios remotos.
-En este proyecto se usó Dafny para escribir y verificar el código, luego traducirlo a BoogieX86 un lenguaje Assambly verficable para evitar también errores del compilador.
+En este proyecto se usó Dafny para escribir y verificar el código, luego traducirlo a BoogieX86 un lenguaje Assambly verificable para evitar también errores del compilador.
 
 La idea de Ironfleet\cite{hawblitzel2015ironfleet} es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodología de trabajo para realizar la implementación de un 
-sistema del estilo. En el paper hay dos sistemas implementados, uno con una librería de maquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
+sistema del estilo. En el paper hay dos sistemas implementados, uno con una librería de máquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
 Se usó una versión extendida de Dafny que permite manejar paquetes de red UDP y también para poder verificar propiedades de liveness y safety una extensión que permita manejar TLA 
 (una extensión de la lógica temporal).
 A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumió que el compilador de Dafny, el runtime de dotnet y Windows eran correctos.
@@ -209,7 +209,7 @@ También tuvo mucho éxito en el ámbito de competencias de verificación.
 \section{Caso de estudio: verificar algoritmo Fibonacci}
 Supongamos que necesito implementar fibonacci, pero no quiero hacerlo de manera recursiva por una cuestión de performance. En Dafny lo puedo hacer de la siguiente manera.
 
-Primero defino la función fibonacci copiando la definición matematica utilizando recurision como base.
+Primero defino la función fibonacci copiando la definición matemática utilizando recurisión como base.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
 function fibonacci(n: nat): nat
@@ -222,12 +222,12 @@ function fibonacci(n: nat): nat
 
 Habiendo hecho esto empiezo a definir el método para calcular fibonacci.
 Como precondición, usando la palabra reservada \textit{ensures}, tengo que la variable de retorno \textit{b} tiene que ser igual al resultado de calcular fibonacci con la función antes definida.
-Se que para mi método voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello también agrego la lineas 8 y 13 que me asguran que recorro todo el rango [0,n].
-La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del loop como (linea 9) 
+Se que para mi método voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello también agrego la líneas 8 y 13 que me aseguran que recorro todo el rango [0,n].
+La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del loop como (línea 9) 
 y la inicializo para que se cumpla la invariante en la primera iteración. Despues por la definición de fibonacci voy a necesitar otra variable para guardar el valor del siguiente valor de 
-fibonacci o el anterior, en este caso elijo el siguiente (linea 10).
+fibonacci o el anterior, en este caso elijo el siguiente (línea 10).
 
-Luego, escribir la linea 12 es consecuente de las invariantes, ya que para cada iteración, el nuevo valor de fib(i) es el valor de fib(i+1) anterior, mientras que  
+Luego, escribir la línea 12 es consecuente de las invariantes, ya que para cada iteración, el nuevo valor de fib(i) es el valor de fib(i+1) anterior, mientras que  
 el valor del siguiente fibonacci es fib(i) + fib(i+1) de la iteración anterior.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
