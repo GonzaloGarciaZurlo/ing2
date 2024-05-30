@@ -34,10 +34,9 @@ Av. Medina Allende, Córdoba, Argentina
 En este documento se presenta una investigación sobre la herramienta Dafny, un lenguaje de programación y verificador de programas,
 hablaremos de sus características, su historia, su uso y su relación con otras herramientas similares. 
 Presentaremos varios casos de estudio y profundizaremos en uno de ellos con el objetivo de comprender mejor la herramienta y su uso en la práctica.
-\keywords{Dafny  \and Second keyword \and Another keyword.}
+\keywords{Dafny  \and Rustan Leino}
 \end{abstract}
 
-% Esta sección no se si deberia volar o no porque no se que pondriamos
 \section{Introducción}
 
 a. contextualizar la contrib. y b. motivación
@@ -58,7 +57,19 @@ En la sección 4 se describe la herramienta del lado del usuario. Los aspectos t
 En la sección 6 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
 Las comparaciones con otras herramientas similares se presentan en la sección 7. Finalmente, en la sección 9 se presentan las conclusiones.
 
-\emph{Trabajos relacionados.} (no se que poner en esta wea)
+\emph{Trabajos relacionados.} 
+Boogie: Fue creado por Microsoft Research, específicamente por un equipo liderado por Rustan. 
+Boogie esta diseñado para ser un lenguaje intermedio que actúa como un puente entre lenguajes de alto nivel (como Dafny) y los solvers SMT. 
+Su modularidad permite que se pueda adaptar y extender para diferentes lenguajes de programación y dominios específicos.
+Uno de los principales objetivos fue simplificar el proceso de verificación al proporcionar un marco donde las especificaciones formales pudieran ser automáticamente 
+traducidas en condiciones de verificación precisas, que luego podrían ser resueltas por solvers SMT como Z3.
+
+z3: Z3 es un solver SMT (Satisfiability Modulo Theories) desarrollado por Microsoft Research. 
+Es una herramienta altamente sofisticada que se utiliza para decidir la satisfacibilidad de fórmulas lógicas que no solo se limitan a la lógica proposicional, 
+sino que también incluyen diversas teorías matemáticas.
+Z3 es utilizado tanto para la verificacion de software (como es el caso de Dafny),
+como para la verificación de hardware, criṕtografia, y otros problemas de optimizacion y satisfacibilidad.
+
 
 \section{Contexto de creación de la herramienta}
 
@@ -73,9 +84,11 @@ que hoy en día es un componente básico para muchos verificadores de programas 
 como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.
 
 Dafny fue creado principalmente en un contexto académico, 
-aunque se sigue siendo usado para la enseñanza en muchas universidades, 
-Dafny tiene un fuerte enfoque en aplicaciones prácticas con mucha relevancia industrial actualmente.
-Un ejemplo de esto es el uso de Dafny en Amazon Web Services (AWS) para verificar corrección.
+y es usado para la enseñanza en muchas universidades.
+Ademas, Dafny ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
+especialmente en áreas donde la confiabilidad y la seguridad son críticas, 
+desde la verificación de contratos inteligentes en blockchain hasta sistemas de alta integridad en la industria aeroespacial, 
+como tambien en proyectos dentro del mismo Microsoft Research.
 
 \section{Objetivo de la herramienta}
 
@@ -132,13 +145,14 @@ Los lemas que no se prueban automaticamente se puedn probar al estilo de un calc
 
 Dafny tiene un metodo especial llamado Main, que se ejecuta cuando uno corre el programa con la CLI. Este metodo es util para hacer pruebas de la funcionalidad del programa.
 Este metodo en la versión más reciente puede recibir un argumentos de tipo \textit{seq<string>}.
+
 \section{Aspectos técnicos de la herramienta}
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
 utilizando principios como tripletes de Hoare, reglas de inferencia y correcion parcial y total.
 
 En cuanto al espacio de estado, Dafny maneja este a partir de Boogie Intermediate Verification Language
 para realizar la verificación formal de programas, a su vez Boogie utiliza Z3 como SMT solver para realizar la verificación,
-pero este es solo el SMT solver default ya que también se puede utiliza Yices 2 o CVC5, aunque su integración es por el momento experimental.
+pero este es solo el SMT solver default ya que también se puede utilizar Yices 2 o CVC5 (aunque su integración es por el momento experimental).
 
 En conjunto con esto, Dafny se centra en considerar todas las posibles ejecuciones del programa dentro del marco de las especificaciones proporcionadas. 
 Sin embargo, utiliza técnicas que le permiten manejar el espacio de estado de manera simbólica en lugar de explícita, 
@@ -183,11 +197,10 @@ Se uso una versión extendida de Dafny que permite manejar paquetes de red UDP y
 
 A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumio que el compilador de Dafny, el runtime de dotnet y Windows eran correctos.
 
-
+***
 Parace que se lo uso mucho para competencias de specificacion y verificación formal de programas.
-
 Parece que más que nada se lo usa para enseñar verificación (segun la página de microsoft reaserch).
-
+***
 \section{Comparación con otras herramientas}
 
 Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
@@ -264,7 +277,17 @@ Fibonachi of 8 is 21
 \end{verbatim}
 
 \section{Conclusiones particulares}
-Es facil de usar (como yo para ella Sad) y amigable (todavia no escribi nada en Dafny)
+
+(un poco de z3)
+Z3 es una herramienta poderosa y versátil para la verificación formal y la solución de problemas de satisfacibilidad en lógica y matemáticas. 
+Su capacidad para manejar múltiples teorías, combinada con técnicas avanzadas de búsqueda y optimización, 
+lo hace adecuado para una amplia gama de aplicaciones en la industria y la academia.
+
+(un poco de Boogie)
+Boogie actúa como un puente crucial entre el código de alto nivel y la verificación automática mediante solvers SMT. 
+Al traducir el código y las especificaciones de Dafny en un lenguaje intermedio más manejable y generar condiciones de verificación precisas, 
+Boogie permite una verificación formal eficiente y efectiva.
+
 
 \section{Links varios y otras frutas}
 (otra herramienta de microsoft reserch https://github.com/Z3Prover/z3) for discharging proof obligations.
