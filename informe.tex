@@ -42,11 +42,11 @@ Presentaremos varios casos de estudio y profundizaremos en uno de ellos con el o
 En un contexto donde la corrección del código es una preocupación crítica, especialmente en aplicaciones que requieren alta confiabilidad y seguridad,
 Dafny se desarrolla con el objetivo de hacer la verificación formal más accesible, práctica y efectiva para los desarrolladores de software, 
 ayudando a construir sistemas más confiables y seguros.
-Esto lo logra utilizando un lenguaje de programacion propio y sus herramientas adyacentes.
+Esto lo logra utilizando un lenguaje de programación propio y sus herramientas adyacentes.
 En este documento, presentamos una visión detallada de Dafny, 
 destacando sus características clave, su enfoque de verificación automática y su impacto en la fiabilidad del software.
 
-\emph{Organizacion del domcumento.} La sección 2 y 3 presentan el contexto y la motivación para la creación de la herramienta.
+\emph{Organización del domcumento.} La sección 2 y 3 presentan el contexto y la motivación para la creación de la herramienta.
 En la sección 4 se describe la herramienta del lado del usuario. Los aspectos técnicos se explican en la sección 5.
 En la sección 6 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
 Las comparaciones con otras herramientas similares se presentan en la sección 7. Finalmente, en la sección 9 se presentan las conclusiones.
@@ -61,22 +61,22 @@ y comparten muchos principios y tecnologías subyacentes, como la integración c
 
 Z3 es un solver SMT (Satisfiability Modulo Theories) desarrollado por Microsoft Research. 
 Es una herramienta altamente sofisticada que se utiliza para decidir la satisfacibilidad de fórmulas lógicas que no solo se limitan a la lógica proposicional, 
-sino que también incluyen diversas teorías matemáticas.
-Z3 es utilizado tanto para la verificacion de software (como es el caso de Dafny),
-como para la verificación de hardware, criṕtografia, y otros problemas de optimizacion y satisfacibilidad.
+si no que también incluyen diversas teorías matemáticas.
+Z3 es utilizado tanto para la verificación de software (como es el caso de Dafny),
+como para la verificación de hardware, criptografía, y otros problemas de optimización y satisfacibilidad.
 
-Dafny utiliza z3 a partir de Boogie que tambien fue creado por Microsoft Research, específicamente por un equipo liderado por Rustan. 
-Boogie esta diseñado para ser un lenguaje intermedio que actúa como un puente entre lenguajes de alto nivel (como Dafny) y los solvers SMT. 
+Dafny utiliza Z3 a partir de Boogie que también fue creado por Microsoft Research, específicamente por un equipo liderado por Rustan. 
+Boogie está diseñado para ser un lenguaje intermedio que actúa como un puente entre lenguajes de alto nivel (como Dafny) y los solvers SMT. 
 Su modularidad permite que se pueda adaptar y extender para diferentes lenguajes de programación y dominios específicos.
 Uno de los principales objetivos fue simplificar el proceso de verificación al proporcionar un marco donde las especificaciones formales pudieran ser automáticamente 
-traducidas en condiciones de verificación precisas. Ademas de poder usar z3 como backend STM solver, 
+traducidas en condiciones de verificación precisas. Además de poder usar Z3 como backend STM solver, 
 también se puede utilizar Yices 2 o CVC5 (aunque su integración es por el momento experimental).
 
 En contra parte, Dafny difiere con otras herramientas de verificación formal en ciertos aspectos, uno de los ejemplos más claros es Coq 
-que soporta logicas de órdenes superiores, lo que permite especificaciones y verificaciones más expresivas y complejas que Dafny.
+que soporta lógicas de órdenes superiores, lo que permite especificaciones y verificaciones más expresivas y complejas que Dafny.
 
 Otro ejemplo puede ser Agda, que difiere con las antes mencionadas, ya que 
-es orientada hacia la programación funcional, mientras que Dafny es un lenguaje de programación mas orientado hacia el imperativo. 
+es orientada hacia la programación funcional, mientras que Dafny es un lenguaje de programación más orientado hacia el imperativo. 
  
 \section{Contexto de creación de la herramienta}
 
@@ -85,14 +85,14 @@ a partir de experiencias previas desarrollando herramientas como ESC/Modula-3, E
 que hoy en día es un componente básico para muchos verificadores de programas modernos,
 como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.
 
-Desde 2001, Rustan vivio en pacific northwest (EE. UU.) y sé desempeñó como investigador y desarrollador de software para Microsoft,
+Desde 2001, Rustan vivió en pacific northwest (EE. UU.) y se desempeñó como investigador y desarrollador de software para Microsoft,
 donde finalmente creó Dafny en 2008.
 
 Dafny fue creado principalmente en un contexto académico, 
 y es usado para la enseñanza en muchas universidades.
-Ademas, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
+Además, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
 especialmente en áreas donde la confiabilidad y la seguridad son críticas, 
-como tambien en proyectos dentro del mismo Microsoft Research.
+como también en proyectos dentro del mismo Microsoft Research.
 
 \section{Objetivo de la herramienta}
 
@@ -101,7 +101,7 @@ Su objetivo principal es permitir a los desarrolladores escribir programas corre
 de especificaciones directamente en el código fuente. Es decir, el código es verificado a medida que es desarrollado.
 
 Esta herramienta se ajusta al paradigma de desarrollo ``Correcto por construcción'', lo que significa que se comienza
-con un programa específico pero abstracto, y luego se le aplican un conjunto de reglas para ir acotando la especificación
+con un programa específico pero abstracto, y luego se le aplica un conjunto de reglas para ir acotando la especificación
 y convertir el programa en una implementación concreta. De esta forma, el programa resultante es correcto.
 Desarrollando programas de esta manera, los defectos pueden resolverse más fácilmente.
 
@@ -122,52 +122,52 @@ Esto permite una comunicación fluida entre el entorno de desarrollo y el verifi
 Una vez que se ha escrito y verificado un programa, la herramienta ofrece la capacidad de compilar el código a una variedad de lenguajes de programación, como C\#, Go, Python, Java y JavaScript.
 Esta característica amplía las posibilidades de uso de los programas verificados, permitiendo su integración con otros sistemas y plataformas según las necesidades del proyecto.
 
-Esta herramienta ofrece una variedad de características y conceptos clave que son importantes para que el usuario la aproveche al máximo que pueden ser vistas en profundidad en el paper 
-"Dafny: An Automatic Program Verifier for Functional correctness"\cite{10.1007/978-3-642-17511-4_20}.
+Esta herramienta ofrece una variedad de características y conceptos clave que son importantes para que el usuario la aproveche al máximo. Cada una de ellas puede ser vista en profundidad en el artículo 
+``Dafny: An Automatic Program Verifier for Functional correctness''\cite{10.1007/978-3-642-17511-4_20}.
 A continuación, se resumen algunos de estos aspectos:
 
 Proporciona una amplia gama de tipos, incluyendo booleanos, enteros matemáticos, referencias a clases genéricas definidas por el usuario, conjuntos, secuencias y tipos de datos algebraicos.
 Se garantiza la seguridad de tipos, asegurando que el tipo estático de una expresión describa con precisión los posibles valores en tiempo de ejecución.
 Esto permite especificar la corrección funcional y la estructura del programa de manera precisa.
 
-Las sentencias ghost en Dafny son utilizadas en la verificación del programa pero no tienen presencia en tiempo de ejecución, ya que ni siquiera se tienen en cuenta para la compilacion.
-Para declarar sentencias ghost se siguen las mismas reglas que para el resto de sentencias, y su unico fin es la verificacion del programa.
-Ademas, para aumentar la eficiencia del programa, Dafny puede convenvertir automaticamente sentencias "normales" a sentencias ghost si detecta que es posible.
+Las sentencias ghost en Dafny son utilizadas en la verificación del programa, pero no tienen presencia en tiempo de ejecución, ya que ni siquiera se tienen en cuenta para la compilación.
+Para declarar sentencias ghost se siguen las mismas reglas que para el resto de sentencias, y su único fin es la verificación del programa.
+Además, para aumentar la eficiencia del programa, Dafny puede convenvertir automáticamente sentencias ``normales'' a sentencias ghost si detecta que es posible.
 
-Las metodos cumplen un rol muy importante en el lenguaje, debido a sus características y usos.
-Pueden incluir parámetros, precondiciones, postcondiciones, cláusulas de lectura, cláusulas de disminución, cláusulas de modificacion y cuerpos.
-En otros lenguajes a esta estructura la llamarian funcion o procedimiento, pero dafny se reserva la palabra funcion para otro fin.
-Dentro de Dafny las funciones son construcciones mas especificas, que solo pueden tener una sentencia y son utilizadas principalmente para verificacion.
+Los métodos cumplen un rol muy importante en el lenguaje, debido a sus características y usos.
+Pueden incluir parámetros, precondiciones, postcondiciones, cláusulas de lectura, cláusulas de disminución, cláusulas de modificación y cuerpos.
+En otros lenguajes, a esta estructura la llamarían función o procedimiento, pero Dafny se reserva la palabra función para otro fin.
+Dentro de Dafny las funciones son construcciones más específicas, que solo pueden tener una sentencia y son utilizadas principalmente para verificación.
 Las secuencias permiten operaciones como selección de miembros, concatenación y obtención de longitud.
 Los tipos de datos algebraicos definen conjuntos de valores estructurales mediante constructores, lo que permite un modelado flexible de datos.
 
-También tiene la posibilidad de definir lemas. En su sintaxis se definin de manera muy similar a los metodos, pero con la palabra reservada \textit{lemma} en lugar de \textit{method}.
+También tiene la posibilidad de definir lemas. En su sintaxis se definen de manera muy similar a los métodos, pero con la palabra reservada \textit{lemma} en lugar de \textit{method}.
 Son muy útiles para demostrar propiedades que no se pueden demostrar con las invariantes de los loops.
-Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automaticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
-Los lemas que no se prueban automaticamente se puedn demostrar encadenando sentencias o más al estilo inductivo. Seria mas conveniente usar una u otra dependiendo del tipo subyacente del metodo sobre el cual se quiere probar el lema.
+Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automáticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
+Los lemas que no se prueban automáticamente se pueden demostrar encadenando sentencias o más al estilo inductivo. Sería más conveniente usar una u otra dependiendo del tipo subyacente del método sobre el cual se quiere probar el lema.
 
-Dafny tiene un metodo especial llamado Main, que se ejecuta cuando uno corre el programa con la CLI. Este metodo es util para hacer pruebas de la funcionalidad del programa.
+Dafny tiene un método especial llamado Main, que se ejecuta cuando uno corre el programa con la CLI. Este método es útil para hacer pruebas de la funcionalidad del programa.
 En la versión más reciente puede recibir un argumento de tipo \textit{seq<string>}.
 
 \section{Aspectos técnicos de la herramienta}
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
-utilizando principios como tripletes de Hoare, reglas de inferencia y correcion parcial y total.
+utilizando principios como tripletes de Hoare, reglas de inferencia y correción parcial y total.
 
 En conjunto con esto, Dafny se centra en considerar todas las posibles ejecuciones del programa dentro del marco de las especificaciones proporcionadas. 
 Sin embargo, utiliza técnicas que le permiten manejar el espacio de estado de manera simbólica en lugar de explícita, 
-lo que le permite considerar efectivamente "todo el espacio de estado" sin necesidad de enumerarlo completamente.
+lo que le permite considerar efectivamente ``todo el espacio de estado'' sin necesidad de enumerarlo completamente.
 
 En lugar de trabajar con valores concretos, Dafny utiliza variables simbólicas que representan un rango de posibles valores,
 esto permite el análisis de todos los posibles estados del programa simultáneamente.
 Además, Dafny utiliza invariantes dentro de bucles, como también precondiciones (\textit{requires}), postcondiciones (\textit{ensures}) y asserts (\textit{assert}) para definir las condiciones 
 que deben cumplirse antes, durante y después de la ejecución de métodos.
 
-Una gran distincion entre funciones y metodos radica en que al hacer aserciones, en las primeras, Dafny analiza todo el cuerpo, mientras que en los metodos solo tiene en cuenta las postcondiciones. 
+Una gran distinción entre funciones y métodos radica en que al hacer aserciones, en las primeras, Dafny analiza todo el cuerpo, mientras que en los métodos solo tiene en cuenta las postcondiciones. 
 
-Dafny hace uso de cláusulas de lectura y modificacion en los metodos debido a que su tecnica de análisis principal son los dynamic frames. En estos es necesario hacer explícitas las secciones de memoria
-que estan involucradas para tener en cuenta los efectos secundarios.
+Dafny hace uso de cláusulas de lectura y modificación en los métodos debido a que su técnica de análisis principal son los dynamic frames. En estos es necesario hacer explícitas las secciones de memoria
+que están involucradas para tener en cuenta los efectos secundarios.
 
-Para simplificar y transformar los problemas de verificación en formas que pueden ser manejadas más eficientemente por los solvers, 
+Para simplificar y transformar los problemas de verificación en formas que pueden ser manejados más eficientemente por los solvers, 
 Dafny utiliza técnicas de reducción como reducción de expresiones, desdoblamiento de bucles, eliminación de cuantificadores,
 abstracción de datos (para evitar detalles internos) y descomposición modular (para dividir problemas grandes en problemas más pequeños).
 
@@ -177,25 +177,25 @@ Además, dentro del marco de su modelo simbólico y las especificaciones proporc
 Dafny busca ser exhaustivo. Las técnicas de reducción y abstracción antes mencionadas no comprometen la exhaustividad lógica.
 Aunque Dafny esté diseñado para ser muy preciso en la verificación formal, 
 los falsos negativos pueden ser más comunes de lo esperable debido a las limitaciones prácticas que tiene SMT solver
-cuando la complejidad de las especificaciones es grande. Para solventar esto, se necesita ser mas exhaustivo en las ayudas en las pruebas (precondiciones, postcondiciones, aserciones)
+cuando la complejidad de las especificaciones es grande. Para solventar esto, se necesita ser más exhaustivo en las ayudas en las pruebas (precondiciones, postcondiciones, aserciones)
 
 \section{Casos de uso}
 
 Dafny ha tenido varias aplicaciones en la industria, sobre todo dentro de Microsoft, dos casos bien documentados son Ironclad y Ironfleet.
 
-Una Ironclad\cite{hawblitzel2014ironclad} App le permite a los usuarios transmitir datos de forma segura a una máquina remota, garantizando que cada instrucción cumple con una especificación 
+Una Ironclad\cite{hawblitzel2014ironclad} App le permite a los usuarios transmitir datos de forma segura a una máquina remota, garantizando que cada instrucción cumpla con una especificación 
 formal del comportamiento de la aplicación. Esto elimina vulnerabilidades como buffer overflows, errores de parseo y fugas de datos, asegurando el comportamiento esperado de la aplicación en todo momento.
 Se realizó una verificación completa de software de bajo nivel, criptografía y hardware seguro para establecer canales seguros con usuarios remotos.
-En este proyecto se uso Dafny para escribir y verificar el codigo, luego traducirlo a BoogieX86 un lenguaje Assambly verficable para evitar tambien errores del compilador.
+En este proyecto se usó Dafny para escribir y verificar el código, luego traducirlo a BoogieX86 un lenguaje Assambly verficable para evitar también errores del compilador.
 
-La idea de Ironfleet\cite{hawblitzel2015ironfleet} es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodologia de trabajo para realizar la implementación de un 
-sistema del estilo. En el paper hay dos sistemas implementados uno con una libreria de maquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
-Se uso una versión extendida de Dafny que permite manejar paquetes de red UDP y tambien para poder verificar propiedades de liveness y safety una extención que permita manejar TLA 
-(una extención de la logica temporal).
-A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumio que el compilador de Dafny, el runtime de dotnet y Windows eran correctos.
+La idea de Ironfleet\cite{hawblitzel2015ironfleet} es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodología de trabajo para realizar la implementación de un 
+sistema del estilo. En el paper hay dos sistemas implementados, uno con una librería de maquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
+Se usó una versión extendida de Dafny que permite manejar paquetes de red UDP y también para poder verificar propiedades de liveness y safety una extensión que permita manejar TLA 
+(una extensión de la lógica temporal).
+A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumió que el compilador de Dafny, el runtime de dotnet y Windows eran correctos.
 
-En la actualidad se utiliza Dafny mayormente en contextos academicos y didácticos, introduciondo a desarroladores de software a la verificacion de programas.
-Tambien tuvo mucho exito en el ambito de competencias de verificacion.
+En la actualidad se utiliza Dafny mayormente en contextos académicos y didácticos, introduciendo a desarrolladores de software a la verificación de programas.
+También tuvo mucho éxito en el ámbito de competencias de verificación.
 
 
 \section{Caso de estudio: verificar algoritmo Fibonacci}
@@ -212,14 +212,14 @@ function fibonacci(n: nat): nat
 }
 \end{Verbatim}
 
-Habiendo hecho esto empiezo a definir el metodo para calcular fibonacci.
+Habiendo hecho esto empiezo a definir el método para calcular fibonacci.
 Como precondición, usando la palabra reservada \textit{ensures}, tengo que la variable de retorno \textit{b} tiene que ser igual al resultado de calcular fibonacci con la función antes definida.
-Se que para mi metodo voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello tambien agrego la lineas 8 y 13 que me asguran que recorro todo el rango [0,n].
+Se que para mi método voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello también agrego la lineas 8 y 13 que me asguran que recorro todo el rango [0,n].
 La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del loop como (linea 9) 
 y la inicializo para que se cumpla la invariante en la primera iteración. Despues por la definición de fibonacci voy a necesitar otra variable para guardar el valor del siguiente valor de 
 fibonacci o el anterior, en este caso elijo el siguiente (linea 10).
 
-Luego escribir la linea 12 es consecuente de las invariantes, ya que para cada iteración, el nuevo valor de fib(i) es el valor de fib(i+1) anterior, mientras que  
+Luego, escribir la linea 12 es consecuente de las invariantes, ya que para cada iteración, el nuevo valor de fib(i) es el valor de fib(i+1) anterior, mientras que  
 el valor del siguiente fibonacci es fib(i) + fib(i+1) de la iteración anterior.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
@@ -240,7 +240,7 @@ method ComputeFib(n: nat) returns (b: nat)
 }
 \end{Verbatim}
 
-Finalmente para ver el resultado, usamos el metodo especial Main que se ejecuta cuando uno corre el programa con la CLI.
+Finalmente para ver el resultado, usamos el método especial Main que se ejecuta cuando se corre el programa con la CLI.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
 method Main() {
@@ -254,18 +254,18 @@ method Main() {
 }
 \end{Verbatim}
 
-Y dafny nos devuelve 
+Y Dafny nos devuelve 
 
 \begin{verbatim}
 Dafny program verifier finished with 3 verified, 0 errors
 Fibonachi of 8 is 21
 \end{verbatim}
 
-Este metodo iterativo en genral es mas eficiente que el recurisvo para la mayoria de compiladores, pero con la diferencia que nos aseguramos que sigue la definicion matematica de manera correcta.
+Este método iterativo, en genral, es mas eficiente que el recurisvo para la mayoría de compiladores, pero con la diferencia que nos aseguramos que sigue la definición matemática de manera correcta.
 
-Ademas, si ponemos todos este codigo dentro de un modulo de dafny, compilamos esto con el target de python, tenemos la posibilidad de utilizar esta version de fibonacci verificada
-en un proyecto arbitriario. Esto es muy util, ya que por ejemplo Dafny, no cuenta con una manera de realizar inputs de numeros enteros, y podriamos utilizar el input nativo de 
-python que es mucho mas flexible, aunque no se encuentra verificado (al menos en el contexto en el que lo vamos a usar).
+Además, si ponemos todos este código dentro de un módulo de Dafny, compilamos esto con el target de python, tenemos la posibilidad de utilizar esta versión de fibonacci verificada
+en un proyecto arbitriario. Esto es muy útil, ya que por ejemplo Dafny, no cuenta con una manera de realizar inputs de numeros enteros, y podríamos utilizar el input nativo de 
+python que es mucho más flexible, aunque no se encuentra verificado (al menos en el contexto en el que lo vamos a usar).
 
 
 \section{Conclusiones particulares}
@@ -273,10 +273,10 @@ python que es mucho mas flexible, aunque no se encuentra verificado (al menos en
 Dafny es un lenguaje muy completo con una expresividad muy grande. A pesar de que su uso principal es con fines didácticos, se pueden verificar programas muy complejos. 
 Que sea un lenguaje de programación completo lo hace muy accesible, aunque quizás lleno de detalles.
 
-Para usos más formales y completos, es inevitable tener que extenderlo debido a que no tiene una libreria estándar, por ejemplo no tiene manera de hacer IO.
+Para usos más formales y completos, es inevitable tener que extenderlo debido a que no tiene una librería estándar, por ejemplo no tiene manera de hacer IO.
 Aun así, estas falencias no quitan que se puedan modularizar partes del código verificadas y, al poder traducirlas a otro lenguaje, integrar código verificado en una aplicación real.
 
-El uso de Boogie y Z3 fue una decision facil, ya que Leino se vio ivolucrado en el desarrolo del primero y conocia muy de cerca estas herramientas.
+El uso de Boogie y Z3 fue una decisión fácil, ya que Leino se vio involucrado en el desarrollo del primero y conocía muy de cerca estas herramientas.
 Boogie actúa como un puente crucial entre el código de alto nivel y la verificación automática mediante solvers SMT. 
 Al traducir el código y las especificaciones de Dafny en un lenguaje intermedio más manejable y generar condiciones de verificación precisas, 
 Boogie permite una verificación formal eficiente y efectiva.
