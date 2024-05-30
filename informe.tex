@@ -46,10 +46,11 @@ Esto lo logra utilizando un lenguaje de programación propio y sus herramientas 
 En este documento, presentamos una visión detallada de Dafny, 
 destacando sus características clave, su enfoque de verificación automática y su impacto en la fiabilidad del software.
 
-\emph{Organización del domcumento.} La sección 2 y 3 presentan el contexto y la motivación para la creación de la herramienta.
-En la sección 4 se describe la herramienta del lado del usuario. Los aspectos técnicos se explican en la sección 5.
-En la sección 6 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
-Las comparaciones con otras herramientas similares se presentan en la sección 7. Finalmente, en la sección 9 se presentan las conclusiones.
+\emph{Organización del domcumento.} En la sección 2 hablaermos de los trabajos relacionados con Dafny que uso Rustan como inspiracion.
+La secciónes 3 y 4 presentan el contexto y los objetivos para la creación de la herramienta.
+En la sección 5 se describe la herramienta del lado del usuario. Los aspectos técnicos se explican en la sección 6.
+En la sección 7 se presentan casos de estudio de la herramienta y en la sección 9 se profundizará en uno elegido. 
+Las comparaciones con otras herramientas similares se presentan en la sección 8. Finalmente, en la sección 10 se presentan las conclusiones.
 
 \section{Trabajos relacionados} 
 Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
@@ -93,6 +94,8 @@ y es usado para la enseñanza en muchas universidades.
 Además, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
 especialmente en áreas donde la confiabilidad y la seguridad son críticas, 
 como también en proyectos dentro del mismo Microsoft Research.
+Aqui\cite{EntrevistaLeino} se puede encontrar una entrevista a Rustan Leino donde habla de su experiencia en el desarrollo de Dafny y 
+como la herramienta esta empezando a ser util para la industria.
 
 \section{Objetivo de la herramienta}
 
@@ -122,7 +125,8 @@ Esto permite una comunicación fluida entre el entorno de desarrollo y el verifi
 Una vez que se ha escrito y verificado un programa, la herramienta ofrece la capacidad de compilar el código a una variedad de lenguajes de programación, como C\#, Go, Python, Java y JavaScript.
 Esta característica amplía las posibilidades de uso de los programas verificados, permitiendo su integración con otros sistemas y plataformas según las necesidades del proyecto.
 
-Esta herramienta ofrece una variedad de características y conceptos clave que son importantes para que el usuario la aproveche al máximo. Cada una de ellas puede ser vista en profundidad en el artículo 
+Esta herramienta ofrece una variedad de características y conceptos clave que son importantes para que el usuario la aproveche al máximo. 
+Cada una de ellas puede ser vista en profundidad en el artículo 
 ``Dafny: An Automatic Program Verifier for Functional correctness''\cite{10.1007/978-3-642-17511-4_20}.
 A continuación, se resumen algunos de estos aspectos:
 
@@ -150,6 +154,10 @@ Dafny tiene un método especial llamado Main, que se ejecuta cuando uno corre el
 En la versión más reciente puede recibir un argumento de tipo \textit{seq<string>}.
 
 \section{Aspectos técnicos de la herramienta}
+Dafny al tener un lenguaje de programacion propio, tiene muchos detalles más, cada uno de ellos puede ser pueden ver en profundidad en el artículo 
+``Developing Verified Programs with Dafny''\cite{10.1007/978-3-642-27705-4_7}.
+A continuación, se mencionan los que concideramos mas importantes:
+
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
 utilizando principios como tripletes de Hoare, reglas de inferencia y correción parcial y total.
 
