@@ -46,8 +46,8 @@ Esto lo logra utilizando un lenguaje de programación propio y sus herramientas 
 En este documento, presentamos una visión detallada de Dafny, 
 destacando sus características clave, su enfoque de verificación automática y su impacto en la fiabilidad del software.
 
-\emph{Organización del domcumento.} En la sección 2 hablaremos de los trabajos relacionados con Dafny que uso Rustan como inspiración.
-La secciones 3 y 4 presentan el contexto y los objetivos para la creación de la herramienta.
+\emph{Organización del domcumento.} En la sección 2 hablaremos de los trabajos relacionados con Dafny que usó Rustan como inspiración.
+Las secciones 3 y 4 presentan el contexto y los objetivos para la creación de la herramienta.
 En la sección 5 se describe la herramienta del lado del usuario. Los aspectos técnicos se explican en la sección 6.
 En la sección 7 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
 Finalmente, en la sección 9 se presentan las conclusiones.
@@ -73,7 +73,7 @@ Uno de los principales objetivos fue simplificar el proceso de verificación al 
 traducidas en condiciones de verificación precisas. Además de poder usar Z3 como backend STM solver, 
 también se puede utilizar Yices 2 o CVC5 (aunque su integración es por el momento experimental).
 
-En contra parte, Dafny difiere con otras herramientas de verificación formal en ciertos aspectos, uno de los ejemplos más claros es Coq 
+En contraparte, Dafny difiere con otras herramientas de verificación formal en ciertos aspectos, uno de los ejemplos más claros es Coq 
 que soporta lógicas de órdenes superiores, lo que permite especificaciones y verificaciones más expresivas y complejas que Dafny.
 
 Otro ejemplo puede ser Agda, que difiere con las antes mencionadas, ya que 
@@ -95,7 +95,7 @@ Además, ha demostrado ser una herramienta valiosa en una variedad de proyectos 
 especialmente en áreas donde la confiabilidad y la seguridad son críticas, 
 como también en proyectos dentro del mismo Microsoft Research.
 Aqui\cite{EntrevistaLeino} se puede encontrar una entrevista a Rustan Leino donde habla de su experiencia en el desarrollo de Dafny y 
-como la herramienta esta empezando a ser util para la industria.
+como la herramienta está empezando a ser útil para la industria.
 
 \section{Objetivo de la herramienta}
 
@@ -209,7 +209,7 @@ También tuvo mucho éxito en el ámbito de competencias de verificación.
 \section{Caso de estudio: verificar algoritmo Fibonacci}
 Supongamos que necesito implementar fibonacci, pero no quiero hacerlo de manera recursiva por una cuestión de performance. En Dafny lo puedo hacer de la siguiente manera.
 
-Primero defino la función fibonacci copiando la definición matemática utilizando recurisión como base.
+Primero defino la función fibonacci copiando la definición matemática utilizando recursión como base.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
 function fibonacci(n: nat): nat
