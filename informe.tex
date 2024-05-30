@@ -81,20 +81,17 @@ es orientada hacia la programación funcional, mientras que Dafny es un lenguaje
 \section{Contexto de creación de la herramienta}
 
 La herramienta Dafny fue creada en 2009 por Rustan Leino,
-a partir de experiencias previas desarrollando herramientas como ESC/Modula-3, ESC/java y Spect\#.
-
-Desde 2001, Rustan vivio en pacific northwest (EE. UU.) y sé desempeñó como investigador y desarrollador de software para Microsoft,
-donde finalmente creó Dafny.
-
-Previamente, trabajó en el desarrollo del lenguaje de verificación "Boogie",
+a partir de experiencias previas desarrollando herramientas como ESC/Modula-3, ESC/java, Spect\# o Boogie,
 que hoy en día es un componente básico para muchos verificadores de programas modernos,
 como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.
 
+Desde 2001, Rustan vivio en pacific northwest (EE. UU.) y sé desempeñó como investigador y desarrollador de software para Microsoft,
+donde finalmente creó Dafny en 2008.
+
 Dafny fue creado principalmente en un contexto académico, 
 y es usado para la enseñanza en muchas universidades.
-Ademas, Dafny ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
+Ademas, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
 especialmente en áreas donde la confiabilidad y la seguridad son críticas, 
-desde la verificación de contratos inteligentes en blockchain hasta sistemas de alta integridad en la industria aeroespacial, 
 como tambien en proyectos dentro del mismo Microsoft Research.
 
 \section{Objetivo de la herramienta}
@@ -105,7 +102,7 @@ de especificaciones directamente en el código fuente. Es decir, el código es v
 
 Esta herramienta se ajusta al paradigma de desarrollo ``Correcto por construcción'', lo que significa que se comienza
 con un programa específico pero abstracto, y luego se le aplican un conjunto de reglas para ir acotando la especificación
-y convertir el programa en una implementación concreta. De esta forma, el programa resultante es correcto por construcción.
+y convertir el programa en una implementación concreta. De esta forma, el programa resultante es correcto.
 Desarrollando programas de esta manera, los defectos pueden resolverse más fácilmente.
 
 Dafny se destaca por su capacidad única de combinar la implementación del código con la descripción formal de su comportamiento
@@ -132,26 +129,24 @@ Proporciona una amplia gama de tipos, incluyendo booleanos, enteros matemáticos
 Se garantiza la seguridad de tipos, asegurando que el tipo estático de una expresión describa con precisión los posibles valores en tiempo de ejecución.
 Esto permite especificar la corrección funcional y la estructura del programa de manera precisa.
 
-Las variables ghost en Dafny son utilizadas en la verificación del programa pero no tienen presencia en tiempo de ejecución.
-Estas variables se actualizan a través de declaraciones de asignación y siguen las mismas reglas que las variables físicas.
-Son útiles para fines de verificación y se distinguen de las variables físicas mediante comprobaciones sintácticas para prevenir que sus valores fluyan hacia variables no-ghost.
+Las sentencias ghost en Dafny son utilizadas en la verificación del programa pero no tienen presencia en tiempo de ejecución, ya que ni siquiera se tienen en cuenta para la compilacion.
+Para declarar sentencias ghost se siguen las mismas reglas que para el resto de sentencias, y su unico fin es la verificacion del programa.
+Ademas, para aumentar la eficiencia del programa, Dafny puede convenvertir automaticamente sentencias "normales" a sentencias ghost si detecta que es posible.
 
-Las funciones matemáticas, secuencias y tipos de datos algebraicos cumplen un rol muy importante en el lenguaje, debido a sus características y usos.
-Las funciones pueden incluir parámetros de tipo, precondiciones, postcondiciones, cláusulas de lectura, cláusulas de disminución y cuerpos.
+Las metodos cumplen un rol muy importante en el lenguaje, debido a sus características y usos.
+Pueden incluir parámetros, precondiciones, postcondiciones, cláusulas de lectura, cláusulas de disminución, cláusulas de modificacion y cuerpos.
+En otros lenguajes a esta estructura la llamarian funcion o procedimiento, pero dafny se reserva la palabra funcion para otro fin.
+Dentro de Dafny las funciones son construcciones mas especificas, que solo pueden tener una sentencia y son utilizadas principalmente para verificacion.
 Las secuencias permiten operaciones como selección de miembros, concatenación y obtención de longitud.
 Los tipos de datos algebraicos definen conjuntos de valores estructurales mediante constructores, lo que permite un modelado flexible de datos.
-
-Las expresiones y declaraciones son esenciales en la especificación y ejecución del programa.
-Las expresiones son utilizadas para calcular valores y pueden incluir literales, variables, llamadas a funciones y operadores.
-Las declaraciones, por otro lado, se utilizan para realizar acciones como asignaciones, llamadas a métodos, condicionales, bucles y aserciones.
 
 También tiene la posibilidad de definir lemas. En su sintaxis se definin de manera muy similar a los metodos, pero con la palabra reservada \textit{lemma} en lugar de \textit{method}.
 Son muy útiles para demostrar propiedades que no se pueden demostrar con las invariantes de los loops.
 Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automaticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
-Los lemas que no se prueban automaticamente se puedn probar al estilo de un calculo de una prueba encadenando sentencias, o más al estilo inductivo, convendra usar una u otra dependiendo, en general, del tipo subyacente del metodo sobre el cual se quiere probar el lema.
+Los lemas que no se prueban automaticamente se puedn demostrar encadenando sentencias o más al estilo inductivo. Seria mas conveniente usar una u otra dependiendo del tipo subyacente del metodo sobre el cual se quiere probar el lema.
 
 Dafny tiene un metodo especial llamado Main, que se ejecuta cuando uno corre el programa con la CLI. Este metodo es util para hacer pruebas de la funcionalidad del programa.
-Este metodo en la versión más reciente puede recibir un argumentos de tipo \textit{seq<string>}.
+En la versión más reciente puede recibir un argumento de tipo \textit{seq<string>}.
 
 \section{Aspectos técnicos de la herramienta}
 El marco general en el que se basa Dafny, al igual que muchas herramientas de verificación formal, es el de la lógica de Hoare,
