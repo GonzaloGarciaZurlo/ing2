@@ -52,33 +52,6 @@ En la sección 5 se describe la herramienta del lado del usuario. Los aspectos t
 En la sección 7 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
 Finalmente, en la sección 9 se presentan las conclusiones.
 
-\section{Trabajos relacionados} 
-Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
-y que son similares a Dafny en su enfoque de verificación formal, 
-un ejemplo de esto es Why3 que utiliza un enfoque basado en condiciones de verificación y SMT solvers.
-
-Otro claro ejemplo es Spec\# que se puede considerar el predecesor de Dafny y que también utiliza un enfoque basado en lógica de Hoare,
-y comparten muchos principios y tecnologías subyacentes, como la integración con el SMT solver Z3.
-
-Z3 es un solver SMT (Satisfiability Modulo Theories) desarrollado por Microsoft Research. 
-Es una herramienta altamente sofisticada que se utiliza para decidir la satisfacibilidad de fórmulas lógicas que no solo se limitan a la lógica proposicional, 
-si no que también incluyen diversas teorías matemáticas.
-Z3 es utilizado tanto para la verificación de software (como es el caso de Dafny),
-como para la verificación de hardware, criptografía, y otros problemas de optimización y satisfacibilidad.
-
-Dafny utiliza Z3 a partir de Boogie que también fue creado por Microsoft Research, específicamente por un equipo liderado por Rustan. 
-Boogie está diseñado para ser un lenguaje intermedio que actúa como un puente entre lenguajes de alto nivel (como Dafny) y los solvers SMT. 
-Su modularidad permite que se pueda adaptar y extender para diferentes lenguajes de programación y dominios específicos.
-Uno de los principales objetivos fue simplificar el proceso de verificación al proporcionar un marco donde las especificaciones formales pudieran ser automáticamente 
-traducidas en condiciones de verificación precisas. Además de poder usar Z3 como backend STM solver, 
-también se puede utilizar Yices 2 o CVC5 (aunque su integración es por el momento experimental).
-
-En contraparte, Dafny difiere con otras herramientas de verificación formal en ciertos aspectos, uno de los ejemplos más claros es Coq 
-que soporta lógicas de órdenes superiores, lo que permite especificaciones y verificaciones más expresivas y complejas que Dafny.
-
-Otro ejemplo puede ser Agda, que difiere con las antes mencionadas, ya que 
-es orientada hacia la programación funcional, mientras que Dafny es un lenguaje de programación más orientado hacia el imperativo. 
- 
 \section{Contexto de creación de la herramienta}
 
 La herramienta Dafny fue creada en 2009 por Rustan Leino,
@@ -184,7 +157,7 @@ especificadas (precondiciones, postcondiciones, invariantes) se cumplen en todas
 Además, dentro del marco de su modelo simbólico y las especificaciones proporcionadas,
 Dafny busca ser exhaustivo. Las técnicas de reducción y abstracción antes mencionadas no comprometen la exhaustividad lógica.
 Aunque Dafny esté diseñado para ser muy preciso en la verificación formal, 
-los falsos negativos pueden ser más comunes de lo esperable debido a las limitaciones prácticas que tiene SMT solver
+los falsos negativos pueden ser más comunes de lo esperable debido a las limitaciones prácticas que tiene Satisfiability Modulo Theories (SMT) solver
 cuando la complejidad de las especificaciones es grande. Para solventar esto, se necesita ser más exhaustivo en las ayudas en las pruebas (precondiciones, postcondiciones, aserciones)
 
 \section{Casos de uso}
@@ -276,6 +249,33 @@ en un proyecto arbitriario. Esto es muy útil, ya que por ejemplo Dafny, no cuen
 python que es mucho más flexible, aunque no se encuentra verificado (al menos en el contexto en el que lo vamos a usar).
 
 
+\section{Trabajos relacionados} 
+Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
+y que son similares a Dafny en su enfoque de verificación formal, 
+un ejemplo de esto es Why3 que utiliza un enfoque basado en condiciones de verificación y SMT solvers.
+
+Otro claro ejemplo es Spec\# que se puede considerar el predecesor de Dafny y que también utiliza un enfoque basado en lógica de Hoare,
+y comparten muchos principios y tecnologías subyacentes, como la integración con el SMT solver Z3.
+
+Z3 es un solver SMT desarrollado por Microsoft Research. 
+Es una herramienta altamente sofisticada que se utiliza para decidir la satisfacibilidad de fórmulas lógicas que no solo se limitan a la lógica proposicional, 
+si no que también incluyen diversas teorías matemáticas.
+Z3 es utilizado tanto para la verificación de software (como es el caso de Dafny),
+como para la verificación de hardware, criptografía, y otros problemas de optimización y satisfacibilidad.
+
+Dafny utiliza Z3 a partir de Boogie que también fue creado por Microsoft Research, específicamente por un equipo liderado por Rustan. 
+Boogie está diseñado para ser un lenguaje intermedio que actúa como un puente entre lenguajes de alto nivel (como Dafny) y los solvers SMT. 
+Su modularidad permite que se pueda adaptar y extender para diferentes lenguajes de programación y dominios específicos.
+Uno de los principales objetivos fue simplificar el proceso de verificación al proporcionar un marco donde las especificaciones formales pudieran ser automáticamente 
+traducidas en condiciones de verificación precisas. Además de poder usar Z3 como backend STM solver, 
+también se puede utilizar Yices 2 o CVC5 (aunque su integración es por el momento experimental).
+
+En contraparte, Dafny difiere con otras herramientas de verificación formal en ciertos aspectos, uno de los ejemplos más claros es Coq 
+que soporta lógicas de órdenes superiores, lo que permite especificaciones y verificaciones más expresivas y complejas que Dafny.
+
+Otro ejemplo puede ser Agda, que difiere con las antes mencionadas, ya que 
+es orientada hacia la programación funcional, mientras que Dafny es un lenguaje de programación más orientado hacia el imperativo. 
+ 
 \section{Conclusiones particulares}
 
 Dafny es un lenguaje muy completo con una expresividad muy grande. A pesar de que su uso principal es con fines didácticos, se pueden verificar programas muy complejos. 
