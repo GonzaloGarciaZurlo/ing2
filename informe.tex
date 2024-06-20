@@ -59,7 +59,7 @@ a partir de experiencias previas desarrollando herramientas como ESC/Modula-3, E
 que hoy en día es un componente básico para muchos verificadores de programas modernos,
 como Joogie, GPUVerify, SMACK, VCC o el mismo Dafny.
 
-Desde 2001, Rustan vivió en pacific northwest (EE. UU.) y se desempeñó como investigador y desarrollador de software para Microsoft,
+Desde 2001, Rustan vivió en Pacific Northwest (Norteamérica) y se desempeñó como investigador y desarrollador de software para Microsoft,
 donde finalmente creó Dafny en 2008.
 
 Dafny fue creado principalmente en un contexto académico, 
@@ -119,7 +119,7 @@ Las secuencias permiten operaciones como selección de miembros, concatenación 
 Los tipos de datos algebraicos definen conjuntos de valores estructurales mediante constructores, lo que permite un modelado flexible de datos.
 
 También tiene la posibilidad de definir lemas. En su sintaxis se definen de manera muy similar a los métodos, pero con la palabra reservada \textit{lemma} en lugar de \textit{method}.
-Son muy útiles para demostrar propiedades que no se pueden demostrar con las invariantes de los loops.
+Son muy útiles para demostrar propiedades que no se pueden demostrar con las invariantes de los.
 Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automáticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
 Los lemas que no se prueban automáticamente se pueden demostrar encadenando sentencias o más al estilo inductivo. Sería más conveniente usar una u otra dependiendo del tipo subyacente del método sobre el cual se quiere probar el lema.
 
@@ -140,7 +140,7 @@ lo que le permite considerar efectivamente ``todo el espacio de estado'' sin nec
 
 En lugar de trabajar con valores concretos, Dafny utiliza variables simbólicas que representan un rango de posibles valores,
 esto permite el análisis de todos los posibles estados del programa simultáneamente.
-Además, Dafny utiliza invariantes dentro de bucles, como también precondiciones (\textit{requires}), postcondiciones (\textit{ensures}) y asserts (\textit{assert}) para definir las condiciones 
+Además, Dafny utiliza invariantes dentro de bucles, como también precondiciones (\textit{requires}), postcondiciones (\textit{ensures}) y aserciones (\textit{assert}) para definir las condiciones 
 que deben cumplirse antes, durante y después de la ejecución de métodos.
 
 Una gran distinción entre funciones y métodos radica en que al hacer aserciones, en las primeras, Dafny analiza todo el cuerpo, mientras que en los métodos solo tiene en cuenta las postcondiciones. 
@@ -196,7 +196,7 @@ function fibonacci(n: nat): nat
 Habiendo hecho esto empiezo a definir el método para calcular fibonacci.
 Como precondición, usando la palabra reservada \textit{ensures}, tengo que la variable de retorno \textit{b} tiene que ser igual al resultado de calcular fibonacci con la función antes definida.
 Se que para mi método voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello también agrego la líneas 8 y 13 que me aseguran que recorro todo el rango [0,n].
-La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del loop como (línea 9) 
+La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del ciclo como (línea 9) 
 y la inicializo para que se cumpla la invariante en la primera iteración. Despues por la definición de fibonacci voy a necesitar otra variable para guardar el valor del siguiente valor de 
 fibonacci o el anterior, en este caso elijo el siguiente (línea 10).
 
@@ -276,7 +276,7 @@ que soporta lógicas de órdenes superiores, lo que permite especificaciones y v
 Otro ejemplo puede ser Agda, que difiere con las antes mencionadas, ya que 
 es orientada hacia la programación funcional, mientras que Dafny es un lenguaje de programación más orientado hacia el imperativo. 
  
-\section{Conclusiones particulares}
+\section{Conclusiones}
 
 Dafny es un lenguaje muy completo con una expresividad muy grande. A pesar de que su uso principal es con fines didácticos, se pueden verificar programas muy complejos. 
 Que sea un lenguaje de programación completo lo hace muy accesible, aunque quizás lleno de detalles.
