@@ -123,7 +123,7 @@ Son muy útiles para demostrar propiedades que no se pueden demostrar con las in
 Muchas veces Dafny tiene la capacidad para demostrar estas propiedades automáticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
 Los lemas que no se prueban automáticamente se pueden demostrar encadenando sentencias o más al estilo inductivo. Sería más conveniente usar una u otra dependiendo del tipo subyacente del método sobre el cual se quiere probar el lema.
 
-Dafny tiene un método especial llamado Main, que se ejecuta cuando uno corre el programa con la CLI. Este método es útil para hacer pruebas de la funcionalidad del programa.
+Dafny tiene un método especial llamado Main, que se ejecuta cuando uno corre el programa con la Interfaz de Linea de Comandos (CLI). Este método es útil para hacer pruebas de la funcionalidad del programa.
 En la versión más reciente puede recibir un argumento de tipo \textit{seq<string>}.
 
 \section{Aspectos técnicos de la herramienta}
@@ -180,12 +180,12 @@ También tuvo mucho éxito en el ámbito de competencias de verificación.
 
 
 \section{Caso de estudio: verificar algoritmo Fibonacci}
-Supongamos que necesito implementar fibonacci, pero no quiero hacerlo de manera recursiva por una cuestión de performance. En Dafny lo puedo hacer de la siguiente manera.
+Supongamos que se necesita implementar Fibonacci, pero no se quiere hacerlo de manera recursiva por una cuestión de rendimiento. En Dafny se puede hacer de la siguiente manera.
 
-Primero defino la función fibonacci copiando la definición matemática utilizando recursión como base.
+Primero se define la función Fibonacci copiando la definición matemática utilizando recursión como base.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
-function fibonacci(n: nat): nat
+function fib(n: nat): nat
 {
   if n == 0 then 0
   else if n == 1 then 1
@@ -193,15 +193,15 @@ function fibonacci(n: nat): nat
 }
 \end{Verbatim}
 
-Habiendo hecho esto empiezo a definir el método para calcular fibonacci.
-Como precondición, usando la palabra reservada \textit{ensures}, tengo que la variable de retorno \textit{b} tiene que ser igual al resultado de calcular fibonacci con la función antes definida.
-Se que para mi método voy a necesitar una variable de iteración, en este caso \textit{i}, y con ello también agrego la líneas 8 y 13 que me aseguran que recorro todo el rango [0,n].
-La idea en general es que por cada iteración ir guardando en la variable de retorno el valor de fib(i), pongo esto en mis invariantes del ciclo como (línea 9) 
-y la inicializo para que se cumpla la invariante en la primera iteración. Despues por la definición de fibonacci voy a necesitar otra variable para guardar el valor del siguiente valor de 
-fibonacci o el anterior, en este caso elijo el siguiente (línea 10).
+Habiendo hecho esto, se empieza a definir el método para calcular Fibonacci.
+Como precondición, usando la palabra reservada \textit{ensures}, se establece que la variable de retorno \textit{b} debe ser igual al resultado de calcular Fibonacci con la función antes definida.
+Para el método se va a necesitar una variable de iteración, en este caso \textit{i}, y con ello también se agregan las líneas 8 y 13 que aseguran que se recorre todo el rango [0,n].
+La idea general es que por cada iteración se guarde en la variable de retorno el valor de fib(i). Esto se pone en las invariantes del ciclo (línea 9)
+y se inicializa para que se cumpla la invariante en la primera iteración. Después, por la definición de Fibonacci, se va a necesitar otra variable para guardar el valor del siguiente número de
+Fibonacci o el anterior. En este caso, se elige el siguiente (línea 10).
 
-Luego, escribir la línea 12 es consecuente de las invariantes, ya que para cada iteración, el nuevo valor de fib(i) es el valor de fib(i+1) anterior, mientras que  
-el valor del siguiente fibonacci es fib(i) + fib(i+1) de la iteración anterior.
+Luego, escribir la línea 12 es consecuente de las invariantes, ya que para cada iteración, el nuevo valor de fib(i) es el valor de fib(i+1) anterior, mientras que
+el valor del siguiente Fibonacci es fib(i) + fib(i+1) de la iteración anterior.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
 method ComputeFib(n: nat) returns (b: nat)
@@ -221,7 +221,7 @@ method ComputeFib(n: nat) returns (b: nat)
 }
 \end{Verbatim}
 
-Finalmente para ver el resultado, usamos el método especial Main que se ejecuta cuando se corre el programa con la CLI.
+Finalmente, para ver el resultado, se usa el método especial Main, que se ejecuta cuando se corre el programa con la CLI.
 
 \begin{Verbatim}[numbers=left,xleftmargin=5mm]
 method Main() {
@@ -235,19 +235,17 @@ method Main() {
 }
 \end{Verbatim}
 
-Y Dafny nos devuelve 
+Y Dafny devuelve:
 
 \begin{verbatim}
 Dafny program verifier finished with 3 verified, 0 errors
 Fibonachi of 8 is 21
 \end{verbatim}
 
-Este método iterativo, en genral, es mas eficiente que el recurisvo para la mayoría de compiladores, pero con la diferencia que nos aseguramos que sigue la definición matemática de manera correcta.
+Este método iterativo, en general, es más eficiente que el recursivo para la mayoría de compiladores, pero con la diferencia de que asegura seguir la definición matemática de manera correcta.
 
-Además, si ponemos todos este código dentro de un módulo de Dafny, compilamos esto con el target de python, tenemos la posibilidad de utilizar esta versión de fibonacci verificada
-en un proyecto arbitriario. Esto es muy útil, ya que por ejemplo Dafny, no cuenta con una manera de realizar inputs de numeros enteros, y podríamos utilizar el input nativo de 
-python que es mucho más flexible, aunque no se encuentra verificado (al menos en el contexto en el que lo vamos a usar).
-
+Además, si se pone todo este código dentro de un módulo de Dafny, se compila esto con el target de Python, se tiene la posibilidad de utilizar esta versión de Fibonacci verificada en un proyecto arbitrario.
+Esto es muy útil, ya que, por ejemplo, Dafny no cuenta con una manera de realizar inputs de números enteros, y se podría utilizar el input nativo de Python, que es mucho más flexible, aunque no se encuentra verificado (al menos en el contexto en el que se va a usar).
 
 \section{Trabajos relacionados} 
 Existen varias herramientas de verificación deductiva de programas que utilizan su propio lenguaje de programación 
