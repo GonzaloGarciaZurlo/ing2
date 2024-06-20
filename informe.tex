@@ -101,10 +101,10 @@ Esta característica amplía las posibilidades de uso de los programas verificad
 Esta herramienta ofrece una variedad de características y conceptos clave que son importantes para que el usuario la aproveche al máximo. 
 Cada una de ellas puede ser vista en profundidad en el artículo 
 ``Dafny: An Automatic Program Verifier for Functional correctness''\cite{10.1007/978-3-642-17511-4_20}.
-A continuación, se resumen algunos de estos aspectos:
+A continuación, se resumen algunos de estos aspectos.
 
 Proporciona una amplia gama de tipos, incluyendo booleanos, enteros matemáticos, referencias a clases genéricas definidas por el usuario, conjuntos, secuencias y tipos de datos algebraicos.
-Se garantiza la seguridad de tipos, asegurando que el tipo estático de una expresión describa con precisión los posibles valores en tiempo de ejecución.
+Se garantiza la seguridad de tipos, haciendo que el tipo estático de una expresión describa con precisión los posibles valores en tiempo de ejecución.
 Esto permite especificar la corrección funcional y la estructura del programa de manera precisa.
 
 Las sentencias ghost en Dafny son utilizadas en la verificación del programa, pero no tienen presencia en tiempo de ejecución, ya que ni siquiera se tienen en cuenta para la compilación.
@@ -145,8 +145,8 @@ que deben cumplirse antes, durante y después de la ejecución de métodos.
 
 Una gran distinción entre funciones y métodos radica en que al hacer aserciones, en las primeras, Dafny analiza todo el cuerpo, mientras que en los métodos solo tiene en cuenta las postcondiciones. 
 
-Dafny hace uso de cláusulas de lectura y modificación en los métodos debido a que su técnica de análisis principal son los dynamic frames. En estos es necesario hacer explícitas las secciones de memoria
-que están involucradas para tener en cuenta los efectos secundarios.
+Dafny hace uso de cláusulas de lectura y modificación en los métodos debido a que su técnica de análisis principal son los dynamic frames.
+Estos ayudan a definir los efectos de una operación en términos de qué partes del estado del programa pueden ser modificadas. Esto es crucial para razonar sobre la corrección del programa y garantizar que ciertas propiedades se mantengan a lo largo de su ejecución en contextos de estructuras dinamicas.
 
 Para simplificar y transformar los problemas de verificación en formas que pueden ser manejados más eficientemente por los solvers, 
 Dafny utiliza técnicas de reducción como reducción de expresiones, desdoblamiento de bucles, eliminación de cuantificadores,
