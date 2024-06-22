@@ -17,9 +17,9 @@
 %
 \title{Investigación de Dafny}
 %
-\author{Gonzalo Garcia Zurlo\inst{1} \and
-Santiago Monserrat Campanello\inst{1} \and
-Federico Virgolini\inst{1}}
+\author{Gonzalo Garcia Zurlo \and
+Santiago Monserrat Campanello \and
+Federico Virgolini}
 %
 \authorrunning{Garcia Zurlo, Monserrat Campanello y Virgolini}
 %
@@ -39,35 +39,26 @@ Presentaremos varios casos de estudio y profundizaremos en uno de ellos con el o
 
 \section{Introducción}
 
-En un contexto donde la corrección del código es una preocupación crítica, especialmente en aplicaciones que requieren alta confiabilidad y seguridad,
+En un contexto donde la corrección del código es una preocupación crítica, especialmente en aplicaciones que requieren alta confiabilidad y seguridad, 
 \textit{Dafny} se desarrolla con el objetivo de hacer la verificación formal más accesible, práctica y efectiva para los desarrolladores de software, 
 ayudando a construir sistemas más confiables y seguros.
-Esto lo logra utilizando un lenguaje de programación propio y sus herramientas adyacentes.
+Esto lo logra utilizando un lenguaje de programación propio y sus herramientas adyacentes. 
 En este documento, presentamos una visión detallada de \textit{Dafny}, 
 destacando sus características clave, su enfoque de verificación automática y su impacto en la fiabilidad del software.
 
-\emph{Organización del documento.} En la sección 2 hablaremos de los trabajos relacionados con \textit{Dafny} que usó el creador como inspiración.
-Las secciones 3 y 4 presentan el contexto y los objetivos para la creación de la herramienta.
-En la sección 5 se describe la herramienta del lado del usuario. Los aspectos técnicos se explican en la sección 6.
-En la sección 7 se presentan casos de estudio de la herramienta y en la sección 8 se profundizará en uno elegido. 
-Finalmente, en la sección 9 se presentan las conclusiones.
+La herramienta \textit{Dafny} fue creada en 2009 por Rustan Leino. 
+Desde 2001, Rustan vivió en el Pacific Northwest (Norteamérica) y se desempeñó como investigador y desarrollador de software para Microsoft. 
+Él tuvo experiencias previas similares, desarrollando herramientas como ESC/Modula-3, ESC/Java, Spec\# o Boogie, que hoy en día es un componente básico para muchos verificadores de programas modernos,
+como Joogie, GPUVerify, SMACK, VCC y el mismo \textit{Dafny}.
 
-\section{Contexto de creación de la herramienta}
-
-La herramienta \textit{Dafny} fue creada en 2009 por Rustan Leino.
-Desde 2001, Rustan vivió en Pacific Northwest (Norteamérica) y se desempeñó como investigador y desarrollador de software para Microsoft.
-Rustan tuvo experiencias previas similares, desarrollando herramientas como ESC/Modula-3, ESC/java, Spect\# o Boogie,
-que hoy en día es un componente básico para muchos verificadores de programas modernos,
-como Joogie, GPUVerify, SMACK, VCC o el mismo \textit{Dafny}.
-
-
-\textit{Dafny} fue creado principalmente en un contexto académico, 
-y es usado para la enseñanza en muchas universidades \cite{DafnyALanguage}.
-Además, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes, 
-especialmente en áreas donde la confiabilidad y la seguridad son críticas, 
-cómo también en proyectos dentro del mismo Microsoft Research.
+\textit{Dafny} fue creado principalmente en un contexto académico y es utilizado para la enseñanza en muchas universidades \cite{DafnyALanguage}. 
+Además, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes,
+especialmente en áreas donde la confiabilidad y la seguridad son críticas,
+así como en proyectos dentro del mismo Microsoft Research. 
 En la página de Amazon Science \cite{EntrevistaLeino} se puede encontrar una entrevista a Rustan Leino donde habla de su experiencia en el desarrollo de \textit{Dafny} y 
-como la herramienta está empezando a ser útil para la industria.
+cómo la herramienta está empezando a ser útil para la industria.
+
+\emph{Organización del documento.} En la sección 2 hablaremos del contexto y los objetivos para la creación de la herramienta. La sección 3 describe la herramienta desde el punto de vista del usuario. Los aspectos técnicos se explican en la sección 4. En la sección 5 se presentan casos de estudio de la herramienta y en la sección 6 se profundizará en uno de ellos. Finalmente, en la sección 7 se presentan las conclusiones y en la sección 8 se discutirán los trabajos relacionados que el creador usó como inspiración.
 
 \section{Objetivo de la herramienta}
 
