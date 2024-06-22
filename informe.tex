@@ -39,26 +39,26 @@ Presentaremos varios casos de estudio y profundizaremos en uno de ellos con el o
 
 \section{Introducción}
 
-En un contexto donde la corrección del código es una preocupación crítica, especialmente en aplicaciones que requieren alta confiabilidad y seguridad, 
-\textit{Dafny} se desarrolla con el objetivo de hacer la verificación formal más accesible, práctica y efectiva para los desarrolladores de software, 
+En un contexto donde la corrección del código es una preocupación crítica, especialmente en aplicaciones que requieren alta confiabilidad y seguridad,
+\textit{Dafny} se desarrolla con el objetivo de hacer la verificación formal más accesible, práctica y efectiva para los desarrolladores de software,
 ayudando a construir sistemas más confiables y seguros.
-Esto lo logra utilizando un lenguaje de programación propio y sus herramientas adyacentes. 
-En este documento, presentamos una visión detallada de \textit{Dafny}, 
+Esto lo logra utilizando un lenguaje de programación propio y sus herramientas adyacentes.
+En este documento, presentamos una visión detallada de \textit{Dafny},
 destacando sus características clave, su enfoque de verificación automática y su impacto en la fiabilidad del software.
 
-La herramienta \textit{Dafny} fue creada en 2009 por Rustan Leino. 
-Desde 2001, Rustan vivió en el Pacific Northwest (Norteamérica) y se desempeñó como investigador y desarrollador de software para Microsoft. 
+La herramienta \textit{Dafny} fue creada en 2009 por Rustan Leino.
+Desde 2001, Rustan vivió en el Pacific Northwest (Norteamérica) y se desempeñó como investigador y desarrollador de software para Microsoft.
 Él tuvo experiencias previas similares, desarrollando herramientas como ESC/Modula-3, ESC/Java, Spec\# o Boogie, que hoy en día es un componente básico para muchos verificadores de programas modernos,
 como Joogie, GPUVerify, SMACK, VCC y el mismo \textit{Dafny}.
 
-\textit{Dafny} fue creado principalmente en un contexto académico y es utilizado para la enseñanza en muchas universidades \cite{DafnyALanguage}. 
+\textit{Dafny} fue creado principalmente en un contexto académico y es utilizado para la enseñanza en muchas universidades \cite{DafnyALanguage}.
 Además, ha demostrado ser una herramienta valiosa en una variedad de proyectos industriales importantes,
 especialmente en áreas donde la confiabilidad y la seguridad son críticas,
-así como en proyectos dentro del mismo Microsoft Research. 
-En la página de Amazon Science \cite{EntrevistaLeino} se puede encontrar una entrevista a Rustan Leino donde habla de su experiencia en el desarrollo de \textit{Dafny} y 
+así como en proyectos dentro del mismo Microsoft Research.
+En la página de Amazon Science \cite{EntrevistaLeino} se puede encontrar una entrevista a Rustan Leino donde habla de su experiencia en el desarrollo de \textit{Dafny} y
 cómo la herramienta está empezando a ser útil para la industria.
 
-\emph{Organización del documento.} En la sección 2 hablaremos del contexto y los objetivos para la creación de la herramienta. La sección 3 describe la herramienta desde el punto de vista del usuario. Los aspectos técnicos se explican en la sección 4. En la sección 5 se presentan casos de estudio de la herramienta y en la sección 6 se profundizará en uno de ellos. Finalmente, en la sección 7 se presentan las conclusiones y en la sección 8 se discutirán los trabajos relacionados que el creador usó como inspiración.
+\emph{Organización del documento.} Primero, se hablará de la herramienta en la sección 2. La sección 3 describe la herramienta desde la perspectiva del usuario, para luego en la sección 4 describir aspectos más técnicos. En la sección 5, se presentan varios casos de uso para ilustrar su aplicación y en la sección 6 se profundizará en una en específico. Posteriormente, en la sección 7, se discutirán trabajos relacionados que inspiraron y complementan a \textit{Dafny}. Finalmente, en la sección 8 se presentarán las conclusiones.
 
 \section{Objetivo de la herramienta}
 
@@ -66,7 +66,7 @@ cómo la herramienta está empezando a ser útil para la industria.
 Su objetivo principal es permitir a los desarrolladores escribir programas correctos y verificables mediante la descripción
 de especificaciones directamente en el código fuente. Es decir, el código es verificado a medida que es desarrollado.
 Además de esto, \textit{Dafny} tiene como objetivo ser una herramienta de fácil acceso para los desarrolladores que quieren introducirse en la verificación formal de programas.
-Esto lo logra a partir de su fácil aprendizaje y su automatización en los procesos de verificación, permitiendo a los desarrolladores centrarse en la lógica del programa y no en los procesos de verificacion del mismo.
+Esto lo logra a partir de su fácil aprendizaje y su automatización en los procesos de verificación, permitiendo a los desarrolladores centrarse en la lógica del programa y no en los procesos de verificación del mismo.
 
 Esta herramienta se ajusta al paradigma de desarrollo ``Correcto por construcción'', lo que significa que se comienza
 con un programa específico pero abstracto, y luego se le aplica un conjunto de reglas para ir acotando la especificación
@@ -116,7 +116,7 @@ en la verificación de otras partes del código al demostrar teoremas o propieda
 Muchas veces \textit{Dafny} tiene la capacidad para demostrar estas propiedades automáticamente, pero en caso de que no pueda, se pueden agregar cuerpos para dar una demostración manual.
 Los lemas que no se prueban automáticamente se pueden demostrar encadenando sentencias o más al estilo inductivo. Sería más conveniente usar una u otra dependiendo del tipo subyacente del método sobre el cual se quiere probar el lema.
 
-\textit{Dafny} tiene un método especial llamado Main, que se ejecuta cuando uno corre el programa con la Interfaz de Linea de Comandos (CLI). Este método es útil para hacer pruebas de la funcionalidad del programa.
+\textit{Dafny} tiene un método especial llamado Main, que se ejecuta cuando uno corre el programa con la Interfaz de Línea de Comandos (CLI). Este método es útil para hacer pruebas de la funcionalidad del programa.
 En la versión más reciente puede recibir un argumento de tipo \textit{seq<string>}.
 
 \section{Aspectos técnicos de la herramienta}
@@ -139,7 +139,7 @@ que deben cumplirse antes, durante y después de la ejecución de métodos.
 Una gran distinción entre funciones y métodos radica en que al hacer aserciones, en las primeras, \textit{Dafny} analiza todo el cuerpo, mientras que en los métodos solo tiene en cuenta las postcondiciones. 
 
 \textit{Dafny} hace uso de cláusulas de lectura y modificación en los métodos debido a que su técnica de análisis principal son los dynamic frames.
-Estos ayudan a definir los efectos de una operación en términos de qué partes del estado del programa pueden ser modificadas. Esto es crucial para razonar sobre la corrección del programa y garantizar que ciertas propiedades se mantengan a lo largo de su ejecución en contextos de estructuras dinamicas.
+Estos ayudan a definir los efectos de una operación en términos de qué partes del estado del programa pueden ser modificadas. Esto es crucial para razonar sobre la corrección del programa y garantizar que ciertas propiedades se mantengan a lo largo de su ejecución en contextos de estructuras dinámicas.
 
 Para simplificar y transformar los problemas de verificación en formas que pueden ser manejados más eficientemente por los solvers, 
 \textit{Dafny} utiliza técnicas de reducción como reducción de expresiones, desdoblamiento de bucles, eliminación de cuantificadores,
@@ -163,7 +163,7 @@ Se realizó una verificación completa de software de bajo nivel, criptografía 
 En este proyecto se usó \textit{Dafny} para escribir y verificar el código, luego traducirlo a BoogieX86 un lenguaje Assambly verificable para evitar también errores del compilador.
 
 La idea de Ironfleet\cite{hawblitzel2015ironfleet} es que los sistemas distribuidos son propensos a fallas, entonces se muestra una metodología de trabajo para realizar la implementación de un 
-sistema del estilo. En el paper hay dos sistemas implementados, uno con una librería de máquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
+sistema del estilo. En el artículos hay dos sistemas implementados, uno con una librería de máquinas de estado (basada en Paxos) y un sistema de almacenamiento de clave-valor.
 Se usó una versión extendida de \textit{Dafny} que permite manejar paquetes de red UDP y también para poder verificar propiedades de liveness y safety una extensión que permita manejar TLA 
 (una extensión de la lógica temporal).
 A diferencia de Ironclad en este caso hubieron muchas más asunciones acerca de la correctitud del entorno, ya que se asumió que el compilador de \textit{Dafny}, el runtime de dotnet y Windows eran correctos.
@@ -286,7 +286,7 @@ Boogie permite una verificación formal eficiente y efectiva.
 Mientras que Z3 es una herramienta poderosa y versátil para la verificación formal y la solución de problemas de satisfacibilidad en lógica y matemáticas. 
 Su capacidad para manejar múltiples teorías, combinada con técnicas avanzadas de búsqueda y optimización, 
 lo hace adecuado para una amplia gama de aplicaciones en la industria y la academia.
-Aunque el uso de estas herramientas puede verse como algo negativo en ciertas ocaciones, ya que la dependecia hacia estas es muy grande, y cualquier error en ellas puede trasladarse a \textit{Dafny}.
+Aunque el uso de estas herramientas puede verse como algo negativo en ciertas ocasiones, ya que la dependencia hacia estas es muy grande, y cualquier error en ellas puede trasladarse a \textit{Dafny}.
 
 Por ultimo, una de las mejores ventajas de \textit{Dafny} es su comunidad activa (¡la última versión importante salió en marzo de este año!), 
 su buena documentación y su excelente integración con entornos de desarrollo. Esto la convierte en una herramienta perfecta para empezar 
